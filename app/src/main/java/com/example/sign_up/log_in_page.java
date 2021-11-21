@@ -18,4 +18,9 @@ public class log_in_page extends AppCompatActivity {
         Intent intent = new Intent(view.getContext(), sign_up_page.class);
         startActivity(intent);
     }
+
+    public void goto_websiteblocking(View view){
+        Intent intent = new Intent(view.getContext(), website_blocking.class);
+        startActivity(intent);
+    }
 }
