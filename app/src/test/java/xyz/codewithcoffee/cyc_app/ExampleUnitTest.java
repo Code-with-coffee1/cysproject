@@ -1,4 +1,4 @@
-package com.example.sign_up;
+package xyz.codewithcoffee.cyc_app;
 
 import org.junit.Test;
 

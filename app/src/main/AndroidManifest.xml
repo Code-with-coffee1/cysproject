@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sign_up">
+    package="xyz.codewithcoffee.cyc_app">
 
     <application
         android:allowBackup="true"
@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sign_up">
-        <activity android:name=".website_blocking" />
-        <activity android:name=".log_in_page" />
-        <activity android:name=".sign_up_page" />
-        <activity android:name=".MainActivity">
+        <activity android:name="xyz.codewithcoffee.cyc_app.website_blocking" />
+        <activity android:name="xyz.codewithcoffee.cyc_app.log_in_page" />
+        <activity android:name="xyz.codewithcoffee.cyc_app.sign_up_page" />
+        <activity android:name="xyz.codewithcoffee.cyc_app.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

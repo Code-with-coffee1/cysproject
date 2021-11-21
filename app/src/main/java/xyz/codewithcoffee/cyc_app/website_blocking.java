@@ -1,11 +1,10 @@
-package com.example.sign_up;
+package xyz.codewithcoffee.cyc_app;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Handler;
+import xyz.codewithcoffee.cyc_app.R;
 
 public class website_blocking extends AppCompatActivity {
 

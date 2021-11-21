@@ -1,10 +1,12 @@
-package com.example.sign_up;
+package xyz.codewithcoffee.cyc_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import xyz.codewithcoffee.cyc_app.R;
 
 public class log_in_page extends AppCompatActivity {
 

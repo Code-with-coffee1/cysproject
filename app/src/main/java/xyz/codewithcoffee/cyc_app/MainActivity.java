@@ -1,11 +1,12 @@
-package com.example.sign_up;
+package xyz.codewithcoffee.cyc_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
+
+import xyz.codewithcoffee.cyc_app.R;
 
 public class MainActivity extends AppCompatActivity {
 

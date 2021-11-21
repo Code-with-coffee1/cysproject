@@ -1,2 +1,2 @@
-rootProject.name = "Sign_up"
+rootProject.name = "CYCApp"
 include ':app'
