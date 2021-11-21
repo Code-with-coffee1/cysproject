@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import xyz.codewithcoffee.cyc_app.R;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(MainActivity.this, log_in_page.class);
+                Intent intent=new Intent(MainActivity.this, LogInPage.class);
                 startActivity(intent);
                 finish();
             }

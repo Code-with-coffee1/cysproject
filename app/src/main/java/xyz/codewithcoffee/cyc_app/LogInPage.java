@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import xyz.codewithcoffee.cyc_app.R;
-
-public class log_in_page extends AppCompatActivity {
+public class LogInPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +15,12 @@ public class log_in_page extends AppCompatActivity {
     }
 
     public void sign_up_button(View view) {
-        Intent intent = new Intent(view.getContext(), sign_up_page.class);
+        Intent intent = new Intent(view.getContext(), SignUpPage.class);
         startActivity(intent);
     }
 
     public void goto_websiteblocking(View view){
-        Intent intent = new Intent(view.getContext(), website_blocking.class);
+        Intent intent = new Intent(view.getContext(), WebsiteBlocking.class);
         startActivity(intent);
     }
 }
