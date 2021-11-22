@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sign_up">
-        <activity android:name="xyz.codewithcoffee.cyc_app.WebsiteBlocking" />
-        <activity android:name="xyz.codewithcoffee.cyc_app.LogInPage" />
-        <activity android:name="xyz.codewithcoffee.cyc_app.SignUpPage" />
-        <activity android:name="xyz.codewithcoffee.cyc_app.MainActivity">
+        <activity android:name=".AppBlocking"></activity>
+        <activity android:name=".WebsiteBlocking" />
+        <activity android:name=".LogInPage" />
+        <activity android:name=".SignUpPage" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
