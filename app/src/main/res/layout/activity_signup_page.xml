@@ -53,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/fullname"
+        android:id="@+id/email_pu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -65,14 +65,14 @@
         tools:ignore="VectorDrawableCompat" />
 
     <ImageView
-        android:id="@+id/email"
+        android:id="@+id/email_uc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullname"
+        app:layout_constraintTop_toBottomOf="@+id/email_pu"
         app:srcCompat="@drawable/ic_email_rectangle"
         tools:ignore="VectorDrawableCompat" />
 
@@ -85,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email_uc"
         app:srcCompat="@drawable/ic_email_rectangle"
         tools:ignore="VectorDrawableCompat" />
 
