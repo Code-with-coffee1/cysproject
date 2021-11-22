@@ -9,8 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sign_up">
-        <activity android:name=".AppBlocking"></activity>
-        <activity android:name=".WebsiteBlocking" />
+        <activity
+            android:name=".Home_page"
+            android:exported="false" />
+        <activity android:name=".AppBlocking" />
+        <activity
+            android:name=".WebsiteBlocking"
+            android:screenOrientation="portrait" />
         <activity android:name=".LogInPage" />
         <activity android:name=".SignUpPage" />
         <activity android:name=".MainActivity">

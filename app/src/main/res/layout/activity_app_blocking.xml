@@ -22,7 +22,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
-        android:text="Website Blocker"
+        android:text="App Blocker"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -78,11 +78,11 @@
         app:layout_constraintTop_toTopOf="@+id/input_web" />
 
     <Button
-        android:id="@+id/block_butt"
+        android:id="@+id/App_block_butt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Block Site"
+        android:text="Block App"
         app:backgroundTint="#B80000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Unblock Existing Sites :"
+        android:text="Unblock Existing Apps :"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +125,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/bl_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/block_butt">
+        app:layout_constraintTop_toBottomOf="@+id/App_block_butt">
 
         <ImageView
             android:id="@+id/white_bg"
