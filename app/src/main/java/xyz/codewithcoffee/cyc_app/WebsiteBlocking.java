@@ -1,7 +1,10 @@
 package xyz.codewithcoffee.cyc_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +29,56 @@ public class WebsiteBlocking extends AppCompatActivity {
     private ArrayList<Site> SiteList = null;
     private ListView listView = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_website_blocking);
-        SiteList = new ArrayList<Site>();
-        funcInit();
+        if(!checkAccessibilityPermission()){
+            Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_instructions_page);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    // request permission via start activity for result
+                    startActivity(intent);
+                    finish();
+                }
+            },10000);
+        }
+        else
+        {
+            Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_website_blocking);
+            SiteList = new ArrayList<Site>();
+            Intent intent = new Intent(WebsiteBlocking.this,UrlInterceptorService.class);
+            intent.putExtra("blocklist",SiteList);
+            startService(intent);
+            funcInit();
+        }
+    }
+
+    public boolean checkAccessibilityPermission () {
+        int accessEnabled = 0;
+        try {
+            accessEnabled = Settings.Secure.getInt(this.getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (accessEnabled == 0) {
+            // if not construct intent to request permission
+            /*Intent intent=new Intent(WebsiteBlocking.this,InstructionsPage.class);
+            startActivity(intent);*/
+            return false;
+        } else {
+            /*Settings.Secure.putString(getContentResolver(),
+                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES, "xyz.codewithcoffee.cyc_app/UrlInterceptorService");
+            Settings.Secure.putString(getContentResolver(),
+                    Settings.Secure.ACCESSIBILITY_ENABLED, "1");*/
+            return true;
+        }
     }
 
     private void funcInit() {
