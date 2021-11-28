@@ -131,6 +131,9 @@ public class WebsiteBlocking extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(),
                             responseText, Toast.LENGTH_LONG).show();
+                    Intent pushIntent = new Intent(WebsiteBlocking.this, UrlInterceptorService.class);
+                    pushIntent.putExtra("blocklist", SiteList);
+                    startService(pushIntent);
                 }
                 else
                 {
@@ -167,6 +170,9 @@ public class WebsiteBlocking extends AppCompatActivity {
                 if(flag) responseText = new StringBuffer("No sites were selected for unblocking");
                 Toast.makeText(getApplicationContext(),
                         responseText, Toast.LENGTH_LONG).show();
+                Intent pushIntent = new Intent(WebsiteBlocking.this, UrlInterceptorService.class);
+                pushIntent.putExtra("blocklist", SiteList);
+                startService(pushIntent);
             }
         });
 

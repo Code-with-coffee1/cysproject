@@ -27,21 +27,12 @@ public class UrlInterceptorService extends AccessibilityService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        /*super.onStartCommand(intent, flags, startId);
-        Bundle bundle = intent.getExtras();
-        if(bundle.getString("blocklist")!= null)
-        {
-            SiteList = (ArrayList<Site>) bundle.get("blocklist");
+        super.onStartCommand(intent, flags, startId);
+        SiteList = (ArrayList<Site>) intent.getSerializableExtra("blocklist");
+        Log.e("BLOCKER","-----BEGIN-----");
+        for(Site site : SiteList) {
+            Log.e("BLOCKER",site.getName());
         }
-        else
-        {
-            Log.e("BLOCKER","NO BLOCKLIST FOUND");
-        }
-        for(Site e :  SiteList)
-        {
-            Log.e("BLOCKER","-----BEGIN-----");
-            for(Site site : SiteList) Log.e("BLOCKER",site.getName());
-        }*/
         return START_STICKY;
     }
 
@@ -117,7 +108,17 @@ public class UrlInterceptorService extends AccessibilityService {
     //TODO Change this func
     private void analyzeCapturedUrl(@NonNull String capturedUrl, @NonNull String browserPackage) {
         String redirectUrl = "https://google.com";
-        if (capturedUrl.contains("facebook.com")) {
+        boolean block = false;
+        for(Site e : SiteList)
+        {
+            if(capturedUrl.contains(e.getName()))
+            {
+                Log.e("BLOCKER","Blocked "+e.getName());
+                block = true;
+                break;
+            }
+        }
+        if (block) {
             performRedirect(redirectUrl, browserPackage);
             Intent intent=new Intent(this, BlockingOverlay.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
