@@ -241,7 +241,7 @@ public class WebsiteBlocking extends AppCompatActivity {
     //TODO : Finish following functions
 
     private void unblockSite(Site site){
-
+        //PLACEHOLDER -- LATER
     }
 
     private Site blockSite(String name){

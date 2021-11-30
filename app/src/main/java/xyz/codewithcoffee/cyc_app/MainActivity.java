@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(MainActivity.this, WebsiteBlocking.class);
+                Intent intent=new Intent(MainActivity.this, SignUpPage.class);
                 startActivity(intent);
                 finish();
 
