@@ -1,6 +1,13 @@
 package xyz.codewithcoffee.cyc_app;
 
-public class Site {
+import android.annotation.SuppressLint;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+
+public class Site implements Serializable {
 
     private String code = null;
     private String name = null;
@@ -12,6 +19,7 @@ public class Site {
         this.name = name;
         this.selected = selected;
     }
+
 
     public String getCode() {
         return code;
@@ -32,5 +40,4 @@ public class Site {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
-
 }
