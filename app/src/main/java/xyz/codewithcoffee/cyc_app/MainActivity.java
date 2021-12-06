@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(MainActivity.this, RateUs.class);
+                Intent intent=new Intent(MainActivity.this, home_page_navigation.class);
                 startActivity(intent);
                 finish();
 
