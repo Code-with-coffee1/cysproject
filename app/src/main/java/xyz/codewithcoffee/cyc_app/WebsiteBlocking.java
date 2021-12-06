@@ -92,8 +92,8 @@ public class WebsiteBlocking extends AppCompatActivity {
         SiteList.add(yt);*/
 
         dataAdapter = new MyCustomAdapter(this,
-                R.layout.site_listitem, new ArrayList<Site>(SiteList));
-        listView = (ListView) findViewById(R.id.blocked_sites);
+                R.layout.listitem, new ArrayList<Site>(SiteList));
+        listView = (ListView) findViewById(R.id.blocked_apps);
         listView.setAdapter(dataAdapter);
 
 
@@ -109,7 +109,7 @@ public class WebsiteBlocking extends AppCompatActivity {
 
         Context cont = this;
 
-        Button blButt = (Button) findViewById(R.id.block_butt);
+        Button blButt = (Button) findViewById(R.id.update_butt);
         blButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -122,8 +122,8 @@ public class WebsiteBlocking extends AppCompatActivity {
                     Site site = blockSite(sitename);
                     SiteList.add(site);
                     dataAdapter = new MyCustomAdapter(cont,
-                            R.layout.site_listitem, new ArrayList<Site>(SiteList));
-                    listView = (ListView) findViewById(R.id.blocked_sites);
+                            R.layout.listitem, new ArrayList<Site>(SiteList));
+                    listView = (ListView) findViewById(R.id.blocked_apps);
                     listView.setAdapter(dataAdapter);
                     StringBuffer responseText = new StringBuffer();
                     responseText.append(sitename + " was " + site.getCode().toLowerCase(Locale.ROOT) + "\n");
@@ -161,8 +161,8 @@ public class WebsiteBlocking extends AppCompatActivity {
                         unblockSite(site);
                         SiteList.remove(site);
                         dataAdapter = new MyCustomAdapter(cont,
-                                R.layout.site_listitem, new ArrayList<Site>(SiteList));
-                        listView = (ListView) findViewById(R.id.blocked_sites);
+                                R.layout.listitem, new ArrayList<Site>(SiteList));
+                        listView = (ListView) findViewById(R.id.blocked_apps);
                         listView.setAdapter(dataAdapter);
                         responseText.append("\n" + site.getName());
                     }
@@ -203,7 +203,7 @@ public class WebsiteBlocking extends AppCompatActivity {
             if (convertView == null) {
                 LayoutInflater vi = (LayoutInflater)getSystemService(
                         Context.LAYOUT_INFLATER_SERVICE);
-                convertView = vi.inflate(R.layout.site_listitem, null);
+                convertView = vi.inflate(R.layout.listitem, null);
 
                 holder = new ViewHolder();
                 holder.code = (TextView) convertView.findViewById(R.id.code);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xyz.codewithcoffee.cyc_app.LogInPage"
+    tools:context="xyz.codewithcoffee.cyc_app.WebsiteBlocking"
     android:background="@drawable/home_back">
 
     <ImageView
@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/cyc_logo" />
 
     <TextView
-        android:id="@+id/wblock_title"
+        android:id="@+id/nblock_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -47,12 +47,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_site"
+        app:layout_constraintTop_toBottomOf="@+id/enter_apps"
         app:srcCompat="@drawable/ic_email_rectangle"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
-        android:id="@+id/enter_site"
+        android:id="@+id/enter_apps"
         android:layout_width="214dp"
         android:layout_height="38dp"
         android:layout_marginTop="100dp"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toTopOf="@+id/input_web" />
 
     <Button
-        android:id="@+id/block_butt"
+        android:id="@+id/update_butt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -125,7 +125,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/bl_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/block_butt">
+        app:layout_constraintTop_toBottomOf="@+id/update_butt">
 
         <ImageView
             android:id="@+id/white_bg"
@@ -136,7 +136,7 @@
             app:srcCompat="@android:drawable/screen_background_light" />
 
         <ListView
-            android:id="@+id/blocked_sites"
+            android:id="@+id/blocked_apps"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"

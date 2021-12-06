@@ -14,10 +14,10 @@ public class Home_page extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
     }
-    public void goto_App_Blocker(View view){
+    /*public void goto_App_Blocker(View view){
         Intent intent=new Intent(view.getContext(),AppBlocking.class);
         startActivity(intent);
-    }
+    }*/
     public void goto_Website_Blocker(View view){
         Intent intent=new Intent(view.getContext(),WebsiteBlocking.class);
         startActivity(intent);

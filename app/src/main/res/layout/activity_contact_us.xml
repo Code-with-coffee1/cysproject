@@ -4,44 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xyz.codewithcoffee.cyc_app.LogInPage"
-    android:background="@drawable/home_back">
+    android:background="@drawable/contuct"
+    tools:context="xyz.codewithcoffee.cyc_app.ContactUs">
 
 
-    <ImageView
-        android:id="@+id/contact_us"
-        android:layout_width="537dp"
-        android:layout_height="843dp"
-        android:layout_marginStart="-170dp"
-        android:layout_marginLeft="-170dp"
-        android:layout_marginTop="-75dp"
-        android:scaleX="1.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/contactus" />
-
-    <ImageView
-        android:id="@+id/sns"
-        android:layout_width="911dp"
-        android:layout_height="641dp"
-        android:layout_marginStart="-275dp"
-        android:layout_marginLeft="-275dp"
-        android:layout_marginTop="-640dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contact_us"
-        app:srcCompat="@drawable/contact_sns" />
 
     <TextView
         android:id="@+id/getintouch"
         android:layout_width="253dp"
         android:layout_height="42dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="430dp"
         android:text="Get In Touch With Us :"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sns" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/feel_free_2contact"
@@ -144,5 +122,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_write_some" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="42dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cyc_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

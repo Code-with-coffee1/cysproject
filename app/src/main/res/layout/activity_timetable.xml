@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_back"
+    tools:context="xyz.codewithcoffee.cyc_app.Timetable">
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:scaleX="4"
+        android:scaleY="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow" />
+
+    <TextView
+        android:id="@+id/rate_us_banner"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:text="Update Timetable"
+        android:gravity="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/arrow"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/cys"
+        android:layout_width="130dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rate_us_banner"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cys_line" />
+
+    <ImageView
+        android:id="@+id/share_jpeg"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rate_us_banner"
+        app:srcCompat="@drawable/clock" />
+
+    <ImageView
+        android:id="@+id/prev_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share_jpeg"
+        app:srcCompat="@drawable/ic_email_rectangle"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/new_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prev_time"
+        app:srcCompat="@drawable/ic_email_rectangle"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageButton
+        android:id="@+id/submit_butt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_time"
+        app:srcCompat="@drawable/login_rect" />
+
+    <TextView
+        android:id="@+id/submit"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="Confirm"
+        android:textColor="#FFFFFF"
+        android:textSize="27dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_time" />
+
+    <EditText
+        android:id="@+id/enter_prev_time"
+        android:layout_width="260dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="Enter Previous Time :"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="#000000"
+        android:textColorHint="#DA676767"
+        app:layout_constraintBottom_toBottomOf="@+id/prev_time"
+        app:layout_constraintEnd_toEndOf="@+id/prev_time"
+        app:layout_constraintStart_toStartOf="@+id/prev_time"
+        app:layout_constraintTop_toTopOf="@+id/prev_time" />
+
+    <EditText
+        android:id="@+id/enter_next_time"
+        android:layout_width="260dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="Enter New Time :"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="#000000"
+        android:textColorHint="#DA676767"
+        app:layout_constraintBottom_toBottomOf="@+id/new_time"
+        app:layout_constraintEnd_toEndOf="@+id/new_time"
+        app:layout_constraintStart_toStartOf="@+id/new_time"
+        app:layout_constraintTop_toTopOf="@+id/new_time" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

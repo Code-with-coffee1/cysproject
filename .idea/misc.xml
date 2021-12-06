@@ -3,20 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Intership stuff/All Versions/app/src/main/res/drawable-mdpi/ic_baseline_lock_24.xml" value="0.24871794871794872" />
-        <entry key="..\:/Intership stuff/All Versions/app/src/main/res/drawable-mdpi/ic_baseline_lock_open_24.xml" value="0.24871794871794872" />
-        <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_app_blocking.xml" value="0.264" />
-        <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_blocking_overlay.xml" value="0.23645833333333333" />
+        <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_app_blocking.xml" value="0.23645833333333333" />
         <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_home_page.xml" value="0.23645833333333333" />
-        <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_instructions_page.xml" value="0.23645833333333333" />
         <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_login_page.xml" value="0.23282051282051283" />
         <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
-        <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_website_blocking.xml" value="0.264" />
-        <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/layout_apps.xml" value="0.23645833333333333" />
+        <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_website_blocking.xml" value="0.23282051282051283" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_about_us.xml" value="0.264" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_app_blocking.xml" value="0.264" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_blocking_overlay.xml" value="0.20652173913043478" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_contact_us.xml" value="0.36560693641618497" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_home_page.xml" value="0.2056159420289855" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_instructions_page.xml" value="0.4" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_login_page.xml" value="0.4" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_main.xml" value="0.15081521739130435" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_notification_blocker.xml" value="0.264" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_rate_us.xml" value="0.264" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_share_app.xml" value="0.2" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_signup_page.xml" value="0.536" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_timetable.xml" value="0.21666666666666667" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_website_blocking.xml" value="0.264" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/layout_apps.xml" value="0.22010869565217392" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/listitem.xml" value="0.21105072463768115" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/site_listitem.xml" value="0.2" />
       </map>
     </option>
