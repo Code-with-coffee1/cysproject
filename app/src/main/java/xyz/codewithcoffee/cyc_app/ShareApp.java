@@ -2,7 +2,9 @@ package xyz.codewithcoffee.cyc_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class ShareApp extends AppCompatActivity {
 
@@ -11,5 +13,9 @@ public class ShareApp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_app);
 
+    }
+    public void goto_home_page_navigation(View view){
+        Intent intent=new Intent(view.getContext(),home_page_navigation.class);
+        startActivity(intent);
     }
 }
