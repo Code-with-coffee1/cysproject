@@ -22,7 +22,7 @@ public class UrlInterceptorService extends AccessibilityService {
 
     private ArrayList<Site> SiteList;
 
-    private HashMap<String, Long> previousUrlDetections = new HashMap<>();
+    private final HashMap<String, Long> previousUrlDetections = new HashMap<>();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -35,6 +35,7 @@ public class UrlInterceptorService extends AccessibilityService {
         return START_STICKY;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onServiceConnected() {
         AccessibilityServiceInfo info = getServiceInfo();

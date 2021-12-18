@@ -2,10 +2,15 @@ package xyz.codewithcoffee.cyc_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -58,6 +63,10 @@ public class home_page_navigation extends AppCompatActivity {
                         Intent intent=new Intent(home_page_navigation.this, ContactUs.class);
                         startActivity(intent);
                         return true;
+                    case R.id.chat:
+                        Intent intentc1=new Intent(home_page_navigation.this, ChatUI.class);
+                        startActivity(intentc1);
+                        return true;
                     case R.id.nav_home:
                         Intent intent2=new Intent(home_page_navigation.this, home_page_navigation.class);
                         startActivity(intent2);
@@ -78,6 +87,21 @@ public class home_page_navigation extends AppCompatActivity {
                         Intent intent6=new Intent(home_page_navigation.this, ShareApp.class);
                         startActivity(intent6);
                         return true;
+                    case R.id.signout:
+                        AuthUI.getInstance().signOut(home_page_navigation.this)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Toast.makeText(home_page_navigation.this,
+                                                "You have been signed out.",
+                                                Toast.LENGTH_LONG)
+                                                .show();
+                                        Intent intent7=new Intent(home_page_navigation.this, LogInPage.class);
+                                        startActivity(intent7);
+                                        // Close activity
+                                        finish();
+                                    }
+                                });
                 }
                 return false;
             }

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "258422591320",
+    "project_id": "cys-fb",
+    "storage_bucket": "cys-fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258422591320:android:ac9991a70cbb2b9b909f2d",
+        "android_client_info": {
+          "package_name": "xyz.codewithcoffee.cyc_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258422591320-a9ea6t4gi506a53kvvcv1ea3tmnjrfvs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.codewithcoffee.cyc_app",
+            "certificate_hash": "0ec1ad46a91dff6f4faef6e1a030d860469eefa8"
+          }
+        },
+        {
+          "client_id": "258422591320-1dpvmh8urecebogvm3ooh6b98hf95k9b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdjdHa3GwPiJlUE23COVyIAratfT3kbTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258422591320-1dpvmh8urecebogvm3ooh6b98hf95k9b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

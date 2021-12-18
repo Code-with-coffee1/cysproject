@@ -6,9 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "FB_MSG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +22,20 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(MainActivity.this, home_page_navigation.class);
-                startActivity(intent);
+                FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    // you could place other firebase code
+                    //logic to save the user details to Firebase
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    Intent intent=new Intent(MainActivity.this, home_page_navigation.class);
+                    startActivity(intent);
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    Intent intent=new Intent(MainActivity.this, LogInPage.class);
+                    startActivity(intent);
+                }
                 finish();
 
             }
