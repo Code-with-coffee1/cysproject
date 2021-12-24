@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "258422591320",
+    "firebase_url": "https://cys-fb-default-rtdb.firebaseio.com",
     "project_id": "cys-fb",
     "storage_bucket": "cys-fb.appspot.com"
   },

@@ -2,23 +2,17 @@ package xyz.codewithcoffee.cyc_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseListAdapter;
-import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,58 +24,73 @@ import com.google.firebase.database.Query;
 public class ChatUI extends AppCompatActivity {
 
     private static final String TAG = "FB_MSG";
-    private DatabaseReference fb_data = FirebaseDatabase.getInstance().getReference();
-
-    private FirebaseListAdapter<ChatMessage> adapter;
+    private FirebaseDatabase fb_data = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_userlist);
+        initDb();
+        initRv();
+        ImageButton allusers = (ImageButton) findViewById(R.id.allusersbg);
+        allusers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_chatui);
+                initChatUi(fb_data.getReference().child("chats"),"All Chat");
+            }
+        });
+    }
+
+    private void initRv()
+    {
+        RecyclerView rv = findViewById(R.id.rec_view);
+        FirebaseRecyclerOptions<User> options
+                = new FirebaseRecyclerOptions.Builder<User>()
+                .setQuery(fb_data.getReference().child("users"), User.class)
+                .build();
+        UserlistAdapter adapter = new UserlistAdapter(options);
+        rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        adapter.startListening();
+    }
+
+
+    private void initDb()
+    {
+        User user = new User(
+                FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
+                FirebaseAuth.getInstance().getCurrentUser().getUid()
+                );
+        fb_data.getReference().child("users").child(
+                FirebaseAuth.getInstance().getCurrentUser().getUid()
+        ).setValue(user);
+    }
+
+    private void initChatUi(DatabaseReference db,String user)
+    {
         setContentView(R.layout.activity_chatui);
-        displayChatMessages();
         FloatingActionButton fab =
                 (FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText input = (EditText)findViewById(R.id.input);
-
-                // Read the input field and push a new instance
-                // of ChatMessage to the Firebase database
-                //fb_data.child("users").child("name").setValue(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-                //fb_data.child("users").child("msg").setValue(input.getText().toString());
-                fb_data.child("chats")
-                        .push()
+                db.push()
                         .setValue(new ChatMessage(input.getText().toString(),
                                 FirebaseAuth.getInstance()
                                         .getCurrentUser()
                                         .getDisplayName())
                         );
-                Log.d(TAG,"Sent Text : "+input.getText().toString()+ " from : "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-                // Clear the input
+                //Log.d(TAG,"Sent Text : "+input.getText().toString()+ " from : "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                 input.setText("");
-                displayChatMessages();
             }
         });
-        displayChatMessages();
-    }
-
-    private void displayChatMessages()
-    {
-        Query query = FirebaseDatabase.getInstance()
-                .getReference()
-                .child("chats");
+        ((TextView)findViewById(R.id.recipient)).setText(user);
         FirebaseRecyclerOptions<ChatMessage> options = new FirebaseRecyclerOptions.Builder<ChatMessage>()
-                .setQuery(query, ChatMessage.class)
-                /*.setLifecycleOwner(new LifecycleOwner() {
-                    @NonNull
-                    @Override
-                    public Lifecycle getLifecycle() {
-                        return null;
-                    }
-                })*/
+                .setQuery(db, ChatMessage.class)
                 .build();
-        FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<ChatMessage, ChatHolder>(options) {
+        FirebaseRecyclerAdapter<ChatMessage, ChatHolder> adapter = new FirebaseRecyclerAdapter<ChatMessage, ChatHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ChatHolder holder, int position, @NonNull ChatMessage model) {
                 holder.setMessage_text(model.getMessageText());
@@ -91,10 +100,8 @@ public class ChatUI extends AppCompatActivity {
 
             @Override
             public ChatHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                // Create a new instance of the ViewHolder, in this case we are using a custom
-                // layout called R.layout.message for each item
                 View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.message, parent, false);
+                        .inflate(R.layout.listmessage, parent, false);
 
                 return new ChatHolder(view);
             }
@@ -106,5 +113,81 @@ public class ChatUI extends AppCompatActivity {
         rv.setLayoutManager(lm);
         rv.setAdapter(adapter);
         rv.smoothScrollToPosition(adapter.getItemCount());
+    }
+
+    class UserlistAdapter extends FirebaseRecyclerAdapter<
+            User, UserlistAdapter.ViewHolder> {
+
+        // RecyclerView recyclerView;
+    /*public UserlistAdapter(Context context,ArrayList<String> username, ArrayList<String> uid) {
+        this.context = context;
+        this.user_name = username;
+        this.uid = uid;
+    }*/
+
+        public UserlistAdapter(FirebaseRecyclerOptions<User> options)
+        {
+            super(options);
+        }
+
+    /*@Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View listItem= layoutInflater.inflate(R.layout.listuser, parent, false);
+        ViewHolder viewHolder = new ViewHolder(listItem);
+        return viewHolder;
+    }*/
+
+        @Override
+        public ViewHolder
+        onCreateViewHolder(ViewGroup parent,
+                           int viewType)
+        {
+            View view
+                    = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.listuser, parent, false);
+            return new UserlistAdapter.ViewHolder(view);
+        }
+
+        @Override
+        protected void
+        onBindViewHolder(ViewHolder holder,
+                         int position,User model)
+        {
+            holder.user_name.setText(model.getUsername());
+            holder.uid.setText(model.getUid());
+            holder.msg_user.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setContentView(R.layout.activity_chatui);
+                    //TODO : Comeback
+                    String uid1,uid2;
+                    uid1 = model.getUid();
+                    uid2 = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    String loc;
+                    if(uid1.compareTo(uid2)>=0)
+                    {
+                        loc = uid1+uid2;
+                    }
+                    else
+                    {
+                        loc = uid2+uid1;
+                    }
+                    initChatUi(fb_data.getReference().child("p2p_chats").child(loc),model.getUsername());
+                }
+            });
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            TextView user_name,uid;
+            ImageButton msg_user;
+            public ViewHolder(View vw)
+            {
+                super(vw);
+                this.user_name = (TextView) itemView.findViewById(R.id.user_name);
+                this.uid = (TextView) itemView.findViewById(R.id.uid);
+                this.msg_user = (ImageButton) itemView.findViewById(R.id.msg_user);
+            }
+        }
     }
 }
