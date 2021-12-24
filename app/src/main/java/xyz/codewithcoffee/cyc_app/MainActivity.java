@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                     // you could place other firebase code
                     //logic to save the user details to Firebase
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent=new Intent(MainActivity.this, home_page_navigation.class);
+                    Intent intent=new Intent(MainActivity.this, HomePageNav.class);
                     startActivity(intent);
                 } else {
                     // User is signed out

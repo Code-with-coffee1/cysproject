@@ -13,6 +13,14 @@
             android:icon="@android:drawable/sym_action_chat"
             android:title="Chat" />
         <item
+            android:id="@+id/web_block"
+            android:icon="@android:drawable/ic_secure"
+            android:title="Website Blocker" />
+        <item
+            android:id="@+id/app_block"
+            android:icon="@android:drawable/ic_secure"
+            android:title="App Blocker" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/about_us_ic"
             android:title="About Us" />

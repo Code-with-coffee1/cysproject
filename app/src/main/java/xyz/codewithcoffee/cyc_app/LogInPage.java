@@ -134,7 +134,7 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
 
 
     private void gotoHome(){
-        Intent intent = new Intent(LogInPage.this, home_page_navigation.class);
+        Intent intent = new Intent(LogInPage.this, HomePageNav.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
@@ -162,7 +162,7 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
     }
 
     public void goto_HomePage(View view){
-        Intent intent = new Intent(view.getContext(), Home_page.class);
+        Intent intent = new Intent(view.getContext(), HomePage.class);
         startActivity(intent);
     }
 

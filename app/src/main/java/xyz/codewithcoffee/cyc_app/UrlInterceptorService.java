@@ -111,7 +111,7 @@ public class UrlInterceptorService extends AccessibilityService {
         boolean block = false;
         for(Site e : SiteList)
         {
-            if(capturedUrl.contains(e.getName()))
+            if(capturedUrl.toLowerCase().contains(e.getName().toLowerCase()))
             {
                 Log.e("BLOCKER","Blocked "+e.getName());
                 block = true;

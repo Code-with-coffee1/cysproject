@@ -160,7 +160,6 @@ public class ChatUI extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     setContentView(R.layout.activity_chatui);
-                    //TODO : Comeback
                     String uid1,uid2;
                     uid1 = model.getUid();
                     uid2 = FirebaseAuth.getInstance().getCurrentUser().getUid();

@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/cyc_logo" />
 
     <TextView
-        android:id="@+id/nblock_title"
+        android:id="@+id/appblock_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -47,12 +47,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_apps"
+        app:layout_constraintTop_toBottomOf="@+id/choose_app"
         app:srcCompat="@drawable/ic_email_rectangle"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
-        android:id="@+id/enter_apps"
+        android:id="@+id/choose_app"
         android:layout_width="214dp"
         android:layout_height="38dp"
         android:layout_marginTop="100dp"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toTopOf="@+id/input_web" />
 
     <Button
-        android:id="@+id/update_butt"
+        android:id="@+id/block_app_butt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -90,18 +90,18 @@
 
 
     <TextView
-        android:id="@+id/unblock_site"
+        android:id="@+id/unblock_app"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="Unblock Existing Sites :"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/unblock_butt"
+        android:id="@+id/unblock_app_butt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -110,10 +110,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
@@ -125,10 +125,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/bl_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_butt">
+        app:layout_constraintTop_toBottomOf="@+id/block_app_butt">
 
         <ImageView
-            android:id="@+id/white_bg"
+            android:id="@+id/white_bg2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"

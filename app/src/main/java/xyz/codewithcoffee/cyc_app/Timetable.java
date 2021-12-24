@@ -15,7 +15,7 @@ public class Timetable extends AppCompatActivity {
     }
 
     public void goto_home_page_navigation(View view) {
-        Intent intent=new Intent(view.getContext(),home_page_navigation.class);
+        Intent intent=new Intent(view.getContext(), HomePageNav.class);
         startActivity(intent);
     }
 }

@@ -22,14 +22,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sign_up">
         <activity
-            android:name=".home_page_navigation"
+            android:name=".HomePageNav"
             android:exported="false"
             android:label="@string/title_activity_home_page_navigation"
             android:theme="@style/Theme.Sign_up.NoActionBar" />
         <activity
-            android:name=".Home_page"
+            android:name=".HomePage"
             android:exported="false" />
         <activity android:name=".WebsiteBlocking" />
+        <activity android:name=".AppBlocking" />
         <activity android:name=".ChatUI" />
         <activity android:name=".LogInPage" />
         <activity android:name=".SignUpPage" />
