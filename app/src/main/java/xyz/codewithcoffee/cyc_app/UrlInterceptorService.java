@@ -29,6 +29,7 @@ public class UrlInterceptorService extends AccessibilityService {
         super.onStartCommand(intent, flags, startId);
         SiteList = (ArrayList<Site>) intent.getSerializableExtra("blocklist");
         Log.e("BLOCKER","-----BEGIN-----");
+        Log.e("APP_BLOCK","-----FOR SERVICE TEST-----");
         for(Site site : SiteList) {
             Log.e("BLOCKER",site.getName());
         }
@@ -120,7 +121,7 @@ public class UrlInterceptorService extends AccessibilityService {
         }
         if (block) {
             performRedirect(redirectUrl, browserPackage);
-            Intent intent=new Intent(this, BlockingOverlay.class);
+            Intent intent=new Intent(this, WebBlockingOverlay.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }

@@ -156,18 +156,8 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
         }
     }
 
-    public void sign_up_button(View view) {
+    public void gotoSignUp(View view) {
         Intent intent = new Intent(view.getContext(), SignUpPage.class);
-        startActivity(intent);
-    }
-
-    public void goto_HomePage(View view){
-        Intent intent = new Intent(view.getContext(), HomePage.class);
-        startActivity(intent);
-    }
-
-    public void goto_websiteblocking(View view){
-        Intent intent = new Intent(view.getContext(), WebsiteBlocking.class);
         startActivity(intent);
     }
 

@@ -32,7 +32,7 @@ public class WebsiteBlocking extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(!checkAccessibilityPermission()){
+        if(!MainActivity.isAccessibilityServiceEnabled(this,UrlInterceptorService.class)){
             Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_instructions_page);

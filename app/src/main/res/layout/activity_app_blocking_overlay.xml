@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xyz.codewithcoffee.cyc_app.BlockingOverlay"
+    tools:context="xyz.codewithcoffee.cyc_app.WebBlockingOverlay"
     android:background="@drawable/home_back">
 
 
@@ -19,12 +19,12 @@
         app:srcCompat="@drawable/blocked" />
 
     <TextView
-        android:id="@+id/this_site_blocked"
+        android:id="@+id/this_app_blocked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="75dp"
         android:fontFamily="sans-serif-medium"
-        android:text="This Site has been Blocked"
+        android:text="This App has been Blocked"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/main_block"
         app:layout_constraintEnd_toEndOf="parent"
