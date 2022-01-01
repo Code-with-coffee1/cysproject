@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class AppMonitorService extends AccessibilityService {
 
-    private static final String TAG = "APP_BLOCK";
+    private static final String TAG = MainActivity.TAG;
     private ArrayList<String> appList;
 
     @Override
@@ -52,7 +52,7 @@ public class AppMonitorService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        //Log.d(TAG,"Sticky onAccessibilityEvent() Called");
+        Log.d(TAG,"Sticky onAccessibilityEvent() Called");
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             if (event.getPackageName() != null && event.getClassName() != null) {
                 ComponentName componentName = new ComponentName(
@@ -65,6 +65,11 @@ public class AppMonitorService extends AccessibilityService {
                 if (isActivity) {
                     String curr = componentName.flattenToShortString();
                     Log.d(TAG, "CurrentActivity : " + curr);
+                    if(appList==null)
+                    {
+                        Log.d(TAG,"NullPointer in applist");
+                        //TODO return;
+                    }
                     for(String app : appList) {
                         if(curr.contains(app))
                         {

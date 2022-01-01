@@ -25,8 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-
-    private static final String TAG = "FB_MSG";
+    
     private SignInButton signInButton;
     private GoogleApiClient googleApiClient;
     private static final int RC_SIGN_IN = 1;
@@ -53,10 +52,10 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
                     // User is signed in
                     // you could place other firebase code
                     //logic to save the user details to Firebase
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    Log.d(MainActivity.TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    // User is signed out`
+                    Log.d(MainActivity.TAG, "onAuthStateChanged:signed_out");
                 }
             }
         };
@@ -105,7 +104,7 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
             firebaseAuthWithGoogle(credential);
         }else{
             // Google Sign In failed, update UI appropriately
-            Log.e(TAG, "Login Unsuccessful. "+result);
+            Log.e(MainActivity.TAG, "Login Unsuccessful. "+result);
             Toast.makeText(this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
         }
     }
@@ -115,12 +114,12 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+                        Log.d(MainActivity.TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
                         if(task.isSuccessful()){
                             Toast.makeText(LogInPage.this, "Login successful", Toast.LENGTH_SHORT).show();
                             gotoHome();
                         }else{
-                            Log.w(TAG, "signInWithCredential" + task.getException().getMessage());
+                            Log.w(MainActivity.TAG, "signInWithCredential" + task.getException().getMessage());
                             task.getException().printStackTrace();
                             Toast.makeText(LogInPage.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -134,7 +133,7 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
 
 
     private void gotoHome(){
-        Intent intent = new Intent(LogInPage.this, HomePageNav.class);
+        Intent intent = new Intent(LogInPage.this, AppBlocking.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

@@ -15,12 +15,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "FB_MSG";
+    public static final String TAG = "APP_BLOCK";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d(TAG,"MainActivity Started");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

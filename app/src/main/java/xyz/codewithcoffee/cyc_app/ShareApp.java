@@ -14,8 +14,4 @@ public class ShareApp extends AppCompatActivity {
         setContentView(R.layout.activity_share_app);
 
     }
-    public void goto_home_page_navigation(View view){
-        Intent intent=new Intent(view.getContext(), HomePageNav.class);
-        startActivity(intent);
-    }
 }

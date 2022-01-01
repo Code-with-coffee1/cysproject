@@ -9,6 +9,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -121,19 +122,58 @@ public class AppBlocking extends AppCompatActivity {
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         ArrayList<PackageInfo> finlist = new ArrayList<>();
-        List<ResolveInfo> appList = packageManager.queryIntentActivities(mainIntent, 0);
-        Collections.sort(appList, new ResolveInfo.DisplayNameComparator(packageManager));
         List<PackageInfo> packs = packageManager.getInstalledPackages(0);
         for (int i = 0; i < packs.size(); i++) {
             PackageInfo p = packs.get(i);
             ApplicationInfo a = p.applicationInfo;
             // skip system apps if they shall not be included
             if ((a.flags & ApplicationInfo.FLAG_SYSTEM) == 1) {
+                Log.d(TAG,"SYS: "+p.packageName);
                 continue;
             }
+            Log.d(TAG,p.packageName);
             finlist.add(p);
         }
         applist = finlist;
+    }
+
+    private void getAppList2()
+    {
+        PackageManager packageManager = getPackageManager();
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> appList = packageManager.queryIntentActivities(mainIntent, 0);
+        Collections.sort(appList, new ResolveInfo.DisplayNameComparator(packageManager));
+    }
+
+    private void getAppList3() throws PackageManager.NameNotFoundException {
+        final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        // get list of all the apps installed
+        List<ResolveInfo> ril = getPackageManager().queryIntentActivities(mainIntent, 0);
+        List<String> componentList = new ArrayList<String>();
+        String name = null;
+        int i = 0;
+
+        // get size of ril and create a list
+        ArrayList<String> apps = new ArrayList<>();
+        for (ResolveInfo ri : ril) {
+            if (ri.activityInfo != null) {
+                // get package
+                Resources res = getPackageManager().getResourcesForApplication(ri.activityInfo.applicationInfo);
+                // if activity label res is found
+                if (ri.activityInfo.labelRes != 0) {
+                    name = res.getString(ri.activityInfo.labelRes);
+                } else {
+                    name = ri.activityInfo.applicationInfo.loadLabel(
+                            getPackageManager()).toString();
+                }
+                apps.add(name);
+                i++;
+            }
+        }
+        //TODO : applist = apps;
     }
 
     public boolean checkAccessibilityPermission () {
@@ -164,10 +204,10 @@ public class AppBlocking extends AppCompatActivity {
         private ArrayList<String> blist;
 
         public AppBlockListAdapter(Context context, int textViewResourceId,
-                                   ArrayList<PackageInfo> SiteList) {
-            super(context, textViewResourceId, SiteList);
+                                   ArrayList<PackageInfo> aalist) {
+            super(context, textViewResourceId, aalist);
             this.apparray = new ArrayList<PackageInfo>();
-            this.apparray.addAll(SiteList);
+            this.apparray.addAll(aalist);
             blist = new ArrayList<>();
         }
 

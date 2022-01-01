@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ChatHolder extends RecyclerView.ViewHolder {
 
-    private static final String TAG = "FB_MSG";
+    private static final String TAG = MainActivity.TAG;
 
     private View view;
     private TextView message_text,message_time,message_user;

@@ -13,9 +13,4 @@ public class Timetable extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
     }
-
-    public void goto_home_page_navigation(View view) {
-        Intent intent=new Intent(view.getContext(), HomePageNav.class);
-        startActivity(intent);
-    }
 }

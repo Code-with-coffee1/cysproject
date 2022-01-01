@@ -23,7 +23,7 @@ import com.google.firebase.database.Query;
 
 public class ChatUI extends AppCompatActivity {
 
-    private static final String TAG = "FB_MSG";
+    private static final String TAG = MainActivity.TAG;
     private FirebaseDatabase fb_data = FirebaseDatabase.getInstance();
 
     @Override
