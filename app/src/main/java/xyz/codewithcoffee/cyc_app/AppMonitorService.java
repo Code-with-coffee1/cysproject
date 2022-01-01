@@ -68,10 +68,10 @@ public class AppMonitorService extends AccessibilityService {
                     if(appList==null)
                     {
                         Log.d(TAG,"NullPointer in applist");
-                        //TODO return;
+                        return;
                     }
                     for(String app : appList) {
-                        if(curr.contains(app))
+                        if(curr.contains(app)&&(!curr.contains("xyz.codewithcoffee.cyc_app")))
                         {
                             Log.d(TAG,"Match !");
                             Intent intent=new Intent(this, AppBlockingOverlay.class);

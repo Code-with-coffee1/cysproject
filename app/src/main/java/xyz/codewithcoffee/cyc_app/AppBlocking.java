@@ -51,7 +51,7 @@ public class AppBlocking extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            },10000);
+            },5000);
         }
         else
         {
@@ -70,7 +70,7 @@ public class AppBlocking extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getAppList();
-                Toast.makeText(this_context, "Refreshed App List", Toast.LENGTH_LONG).show();
+                Toast.makeText(this_context, "Refreshed App List", Toast.LENGTH_SHORT).show();
                 dataAdapter = new AppBlocking.AppBlockListAdapter(this_context,
                         R.layout.listitem, applist);
                 listView.setAdapter(dataAdapter);
@@ -87,7 +87,7 @@ public class AppBlocking extends AppCompatActivity {
                 PackageInfo pi = (PackageInfo) parent.getItemAtPosition(position);
                 Toast.makeText(getApplicationContext(),
                         pi.packageName+" has version "+pi.versionName,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
         });
         Button bblock = (Button)findViewById(R.id.block_app_butt);
@@ -98,7 +98,7 @@ public class AppBlocking extends AppCompatActivity {
                 {
                     stopService(new Intent(AppBlocking.this, AppMonitorService.class));
                 }
-                Toast.makeText(this_context, "Blocked selected Apps", Toast.LENGTH_LONG).show();
+                Toast.makeText(this_context, "Blocked selected Apps", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AppBlocking.this, AppMonitorService.class);
                 intent.putExtra("applist", dataAdapter.blist);
                 startService(intent);
@@ -247,7 +247,7 @@ public class AppBlocking extends AppCompatActivity {
                         }
                         Toast.makeText(getApplicationContext(),
                                 status,
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
             }

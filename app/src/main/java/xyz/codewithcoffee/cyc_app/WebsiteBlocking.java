@@ -45,7 +45,7 @@ public class WebsiteBlocking extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            },10000);
+            },5000);
         }
         else
         {
