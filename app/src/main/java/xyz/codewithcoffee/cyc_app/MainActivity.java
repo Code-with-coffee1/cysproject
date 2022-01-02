@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "APP_BLOCK";
+    public static final String TMP_TAG = "TEMP_TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

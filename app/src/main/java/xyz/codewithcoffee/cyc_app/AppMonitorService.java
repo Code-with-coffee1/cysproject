@@ -20,6 +20,7 @@ public class AppMonitorService extends AccessibilityService {
 
     private static final String TAG = MainActivity.TAG;
     private ArrayList<String> appList;
+    private boolean last_bl = false;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -53,7 +54,9 @@ public class AppMonitorService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         Log.d(TAG,"Sticky onAccessibilityEvent() Called");
+
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            boolean flag = false;
             if (event.getPackageName() != null && event.getClassName() != null) {
                 ComponentName componentName = new ComponentName(
                         event.getPackageName().toString(),
@@ -79,9 +82,17 @@ public class AppMonitorService extends AccessibilityService {
                             startActivity(intent);
                             ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
                             am.killBackgroundProcesses(app);
+                            last_bl = true;
+                            flag = true;
                         }
                     }
                 }
+            }
+            if(!flag&last_bl)
+            {
+                Intent intent=new Intent(this, AppBlockingOverlay.class);
+                //TODO Stop Overlay Activity
+                last_bl = false;
             }
         }
     }

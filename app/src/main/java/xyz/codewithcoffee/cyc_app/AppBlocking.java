@@ -1,5 +1,7 @@
 package xyz.codewithcoffee.cyc_app;
 
+import static xyz.codewithcoffee.cyc_app.MainActivity.TMP_TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityManager;
@@ -10,6 +12,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -21,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +37,7 @@ public class AppBlocking extends AppCompatActivity {
 
     private static final String TAG = "APP_BLOCK";
     private AppBlocking.AppBlockListAdapter dataAdapter = null;
-    private ArrayList<PackageInfo> applist = null;
+    private ArrayList<App> applist = null;
     private ListView listView = null;
 
     @Override
@@ -84,9 +88,9 @@ public class AppBlocking extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                PackageInfo pi = (PackageInfo) parent.getItemAtPosition(position);
+                App pi = (App) parent.getItemAtPosition(position);
                 Toast.makeText(getApplicationContext(),
-                        pi.packageName+" has version "+pi.versionName,
+                        pi.getName()+" has version "+pi.getVersion(),
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -134,19 +138,20 @@ public class AppBlocking extends AppCompatActivity {
             Log.d(TAG,p.packageName);
             finlist.add(p);
         }
-        applist = finlist;
+        applist.clear();
+        for(PackageInfo pi : finlist)
+        {
+            App pp = new App();
+            pp.setName(pi.applicationInfo.loadLabel(getPackageManager()).toString());
+            pp.setCode(pi.packageName);
+            pp.setVersion(pi.versionName);
+            pp.setIcon(pi.applicationInfo.loadIcon(getPackageManager()));
+            pp.setSelected(false);
+            applist.add(pp);
+        }
     }
 
-    private void getAppList2()
-    {
-        PackageManager packageManager = getPackageManager();
-        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        List<ResolveInfo> appList = packageManager.queryIntentActivities(mainIntent, 0);
-        Collections.sort(appList, new ResolveInfo.DisplayNameComparator(packageManager));
-    }
-
-    private void getAppList3() throws PackageManager.NameNotFoundException {
+    private void getAppList2() throws PackageManager.NameNotFoundException {
         final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
@@ -198,15 +203,15 @@ public class AppBlocking extends AppCompatActivity {
     }
 
 
-    private class AppBlockListAdapter extends ArrayAdapter<PackageInfo> {
+    private class AppBlockListAdapter extends ArrayAdapter<App> {
 
-        private ArrayList<PackageInfo> apparray;
+        private ArrayList<App> apparray;
         private ArrayList<String> blist;
 
         public AppBlockListAdapter(Context context, int textViewResourceId,
-                                   ArrayList<PackageInfo> aalist) {
+                                   ArrayList<App> aalist) {
             super(context, textViewResourceId, aalist);
-            this.apparray = new ArrayList<PackageInfo>();
+            this.apparray = new ArrayList<App>();
             this.apparray.addAll(aalist);
             blist = new ArrayList<>();
         }
@@ -214,6 +219,7 @@ public class AppBlocking extends AppCompatActivity {
         private class ViewHolder {
             TextView code;
             CheckBox name;
+            ImageView icon;
         }
 
         @Override
@@ -230,20 +236,23 @@ public class AppBlocking extends AppCompatActivity {
                 holder = new AppBlocking.AppBlockListAdapter.ViewHolder();
                 holder.code = (TextView) convertView.findViewById(R.id.code);
                 holder.name = (CheckBox) convertView.findViewById(R.id.site_check);
+                holder.icon = (ImageView) convertView.findViewById(R.id.icon);
                 convertView.setTag(holder);
 
                 holder.name.setOnClickListener( new View.OnClickListener() {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v ;
-                        PackageInfo pi = (PackageInfo) cb.getTag();
+                        App pp = (App) cb.getTag();
+                        //PackageInfo pi = pp.getPackageInfo();
                         String status = (cb.isChecked() ? "Marked " : "Unmarked ") + cb.getText() + " for Blocking";
+                        pp.setSelected(cb.isChecked());
                         if(cb.isChecked())
                         {
-                            blist.add(pi.packageName);
+                            blist.add(pp.getCode());
                         }
                         else
                         {
-                            blist.remove(pi.packageName);
+                            blist.remove(pp.getCode());
                         }
                         Toast.makeText(getApplicationContext(),
                                 status,
@@ -255,11 +264,12 @@ public class AppBlocking extends AppCompatActivity {
                 holder = (AppBlocking.AppBlockListAdapter.ViewHolder) convertView.getTag();
             }
 
-            PackageInfo pi = apparray.get(position);
-            holder.code.setText(" [" +  pi.versionName + "]");
-            holder.name.setText(pi.packageName);
-            holder.name.setChecked(false);
-            holder.name.setTag(pi);
+            App pp = apparray.get(position);
+            holder.code.setText(" [" +  pp.getCode() + "]");
+            holder.name.setText(pp.getName());
+            holder.name.setChecked(pp.isSelected());
+            holder.icon.setImageDrawable(pp.getIcon());
+            holder.name.setTag(pp);
 
             return convertView;
 
