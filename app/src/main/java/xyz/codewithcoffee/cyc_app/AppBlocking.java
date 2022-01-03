@@ -217,7 +217,7 @@ public class AppBlocking extends AppCompatActivity {
         }
 
         private class ViewHolder {
-            TextView code;
+//            TextView code;
             CheckBox name;
             ImageView icon;
         }
@@ -234,7 +234,7 @@ public class AppBlocking extends AppCompatActivity {
                 convertView = vi.inflate(R.layout.listitem, null);
 
                 holder = new AppBlocking.AppBlockListAdapter.ViewHolder();
-                holder.code = (TextView) convertView.findViewById(R.id.code);
+//                holder.code = (TextView) convertView.findViewById(R.id.code);
                 holder.name = (CheckBox) convertView.findViewById(R.id.site_check);
                 holder.icon = (ImageView) convertView.findViewById(R.id.icon);
                 convertView.setTag(holder);
@@ -265,7 +265,7 @@ public class AppBlocking extends AppCompatActivity {
             }
 
             App pp = apparray.get(position);
-            holder.code.setText(" [" +  pp.getCode() + "]");
+//            holder.code.setText(" [" +  pp.getCode() + "]");
             holder.name.setText(pp.getName());
             holder.name.setChecked(pp.isSelected());
             holder.icon.setImageDrawable(pp.getIcon());

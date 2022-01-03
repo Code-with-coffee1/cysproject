@@ -190,7 +190,6 @@ public class WebsiteBlocking extends AppCompatActivity {
         }
 
         private class ViewHolder {
-            TextView code;
             CheckBox name;
         }
 
@@ -206,7 +205,7 @@ public class WebsiteBlocking extends AppCompatActivity {
                 convertView = vi.inflate(R.layout.listitem, null);
 
                 holder = new ViewHolder();
-                holder.code = (TextView) convertView.findViewById(R.id.code);
+//                holder.code = (TextView) convertView.findViewById(R.id.code);
                 holder.name = (CheckBox) convertView.findViewById(R.id.site_check);
                 convertView.setTag(holder);
 
@@ -227,7 +226,7 @@ public class WebsiteBlocking extends AppCompatActivity {
             }
 
             Site Site = SiteList.get(position);
-            holder.code.setText(" (" +  Site.getCode() + ")");
+//            holder.code.setText(" (" +  Site.getCode() + ")");
             holder.name.setText(Site.getName());
             holder.name.setChecked(Site.isSelected());
             holder.name.setTag(Site);

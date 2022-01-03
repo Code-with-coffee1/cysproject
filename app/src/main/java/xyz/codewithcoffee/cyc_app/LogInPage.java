@@ -133,7 +133,7 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
 
 
     private void gotoHome(){
-        Intent intent = new Intent(LogInPage.this, AppBlocking.class);
+        Intent intent = new Intent(LogInPage.this, Homepage.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

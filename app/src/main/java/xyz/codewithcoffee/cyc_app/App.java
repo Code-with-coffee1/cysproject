@@ -15,7 +15,7 @@ public class App {
 
     public App(String name,String code, String version, Drawable icon, boolean selected)
     {
-        this.name = name;
+        this.name = name; 
         this.code = code;
         this.icon = icon;
         this.version = version;

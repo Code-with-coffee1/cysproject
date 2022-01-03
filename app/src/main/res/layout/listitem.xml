@@ -20,21 +20,10 @@
         android:id="@+id/icon"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:paddingLeft="10dp"
         android:layout_alignBottom="@id/site_check"
         android:layout_toRightOf="@+id/site_check"
-        app:srcCompat="@drawable/fui_ic_microsoft_24dp" />
-
-    <TextView
-        android:id="@+id/code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/site_check"
-        android:layout_alignBottom="@+id/site_check"
         android:paddingLeft="10dp"
-        android:layout_toRightOf="@+id/icon"
-        android:text="[Code]"
-        android:textColor="#DA676767" />
+        app:srcCompat="@android:drawable/presence_busy" />
 
 
 
