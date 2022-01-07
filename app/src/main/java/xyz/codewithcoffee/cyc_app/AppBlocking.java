@@ -178,7 +178,6 @@ public class AppBlocking extends AppCompatActivity {
                 i++;
             }
         }
-        //TODO : applist = apps;
     }
 
     public boolean checkAccessibilityPermission () {

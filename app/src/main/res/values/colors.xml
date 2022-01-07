@@ -8,4 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="textcolor_black">#FF000000</color>
+
+    <color name="colorPrimary">#4171E3</color>
+    <color name="test">#CC00BCD4</color>
+    <color name="colorPrimaryDark">#305EDF</color>
+    <color name="colorPrimaryLight">#4991E8</color>
+    <color name="colorAccent">#F2FFE0</color>
+    <color name="colorBGshape">#00109F</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorBackground">#FFFFFF</color>
 </resources>

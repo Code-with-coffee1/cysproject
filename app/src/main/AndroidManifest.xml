@@ -29,6 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sign_up">
         <activity android:name=".Homepage" />
+        <activity android:name=".Dashboard" />
         <activity android:name=".WebsiteBlocking" />
         <activity android:name=".AppBlocking" />
         <activity android:name=".ChatUI" />

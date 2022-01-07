@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                     // you could place other firebase code
                     //logic to save the user details to Firebase
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent=new Intent(MainActivity.this, Homepage.class);
+                    Intent intent=new Intent(MainActivity.this, Dashboard.class);
                     startActivity(intent);
                 } else {
                     // User is signed out

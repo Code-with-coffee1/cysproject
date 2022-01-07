@@ -14,13 +14,55 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class AppMonitorService extends AccessibilityService {
 
     private static final String TAG = MainActivity.TAG;
     private ArrayList<String> appList;
     private boolean last_bl = false;
+
+    private Tym startTime;
+    private Tym endTime;
+
+    private void updateRestrictTime()
+    {
+        Tym[] val = getTymTuple(new File(this.getFilesDir(),"restrict_time.txt"));
+        startTime = val[0];
+        endTime = val[1];
+    }
+
+    private Tym[] getTymTuple(File myfile) {
+        Tym[] val = new Tym[]{new Tym(-1,-1,""),new Tym(-1,-1,"")};
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(myfile);
+            BufferedReader br = new BufferedReader(fileReader);
+            StringTokenizer stoken = new StringTokenizer(br.readLine());
+            val[0].setHour(Integer.parseInt(stoken.nextToken()));
+            val[0].setMin(Integer.parseInt(stoken.nextToken()));
+            stoken = new StringTokenizer(br.readLine());
+            val[1].setHour(Integer.parseInt(stoken.nextToken()));
+            val[1].setMin(Integer.parseInt(stoken.nextToken()));
+            return val;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -32,6 +74,7 @@ public class AppMonitorService extends AccessibilityService {
         {
             Log.d(TAG,"Banned App : "+app);
         }
+        updateRestrictTime();
         return START_STICKY;
     }
 
@@ -53,7 +96,17 @@ public class AppMonitorService extends AccessibilityService {
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        Log.d(TAG,"Sticky onAccessibilityEvent() Called");
+        //Log.d(TAG,"Sticky onAccessibilityEvent() Called");
+        updateRestrictTime();
+        if(!Timetable.banTime(startTime,endTime))
+        {
+            Log.d(TAG,"APP NOT VALID TIME");
+            return;
+        }
+        else
+        {
+            Log.d(TAG,"APP VALID TIME");
+        }
 
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             boolean flag = false;

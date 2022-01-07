@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    app:cardCornerRadius="10dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    app:cardElevation="5dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/card"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/bg_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/account_name"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#C6E53935"
+        android:id="@+id/back"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/icon_img"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_centerHorizontal="true"
+            android:padding="20dp"
+            android:src="@drawable/about_us_ic"
+            app:tint="#fff" />
+
+        <TextView
+            android:id="@+id/text_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:lineSpacingExtra="-8dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="This is a Text"
+            android:textColor="#F3FFFFFF"
+            android:textSize="24sp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

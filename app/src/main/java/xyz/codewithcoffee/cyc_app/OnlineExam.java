@@ -134,8 +134,7 @@ public class OnlineExam extends AppCompatActivity {
         public OnlineExam.QuesListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                            int viewType)
         {
-            View view
-                    = LayoutInflater.from(parent.getContext())
+            View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_question, parent, false);
             return new OnlineExam.QuesListAdapter.ViewHolder(view);
         }

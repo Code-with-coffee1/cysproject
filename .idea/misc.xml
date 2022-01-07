@@ -8,12 +8,14 @@
         <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_login_page.xml" value="0.23282051282051283" />
         <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
         <entry key="..\:/Intership stuff/All Versions/app/src/main/res/layout/activity_website_blocking.xml" value="0.23282051282051283" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/drawable/background.xml" value="0.246875" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_about_us.xml" value="0.264" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_app_blocking.xml" value="0.264" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_app_blocking_overlay.xml" value="0.21829710144927536" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_blocking_overlay.xml" value="0.20652173913043478" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_chatui.xml" value="0.1" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_contact_us.xml" value="0.36560693641618497" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_dashboard.xml" value="0.2861271676300578" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_exam_score.xml" value="0.264" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_exam_start.xml" value="0.264" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_home_page.xml" value="0.264" />
@@ -23,13 +25,14 @@
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_main.xml" value="0.15081521739130435" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_not_valid_time.xml" value="0.264" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_notification_blocker.xml" value="0.264" />
-        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_question_page.xml" value="0.264" />
-        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_question_set.xml" value="0.20833333333333334" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_question_page.xml" value="0.2" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_question_set.xml" value="0.4" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_question_set_land.xml" value="0.20833333333333334" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_rate_us.xml" value="0.264" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_share_app.xml" value="0.2" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_signup_page.xml" value="0.536" />
-        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_timetable.xml" value="0.21666666666666667" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_test.xml" value="0.4" />
+        <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_timetable.xml" value="0.264" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_userlist.xml" value="0.2" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/activity_website_blocking.xml" value="0.264" />
         <entry key="..\:/vjz_codes/cwc_intern/cys_git/app/src/main/res/layout/app_bar_home_page_navigation.xml" value="0.21014492753623187" />

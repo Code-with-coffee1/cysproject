@@ -58,7 +58,7 @@
         android:text=""
         android:hint="Question No X Title :"
         android:textColor="@color/black"
-        android:textColorHint="#DA676767"
+        android:textColorHint="#353535"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exam_double_line" />
@@ -75,7 +75,7 @@
         android:paddingRight="5dp"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="#DA676767"
+        android:textColorHint="#353535"
         app:layout_constraintTop_toBottomOf="@+id/question_name"
         tools:layout_editor_absoluteX="101dp" />
     <EditText
@@ -90,7 +90,7 @@
         android:paddingRight="5dp"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="#DA676767"
+        android:textColorHint="#353535"
         app:layout_constraintTop_toBottomOf="@+id/option_a_edit"
         tools:layout_editor_absoluteX="101dp" />
 
@@ -106,7 +106,7 @@
         android:paddingRight="5dp"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="#DA676767"
+        android:textColorHint="#353535"
         app:layout_constraintTop_toBottomOf="@+id/option_b_edit"
         tools:layout_editor_absoluteX="101dp" />
 
@@ -122,7 +122,7 @@
         android:paddingRight="5dp"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="#DA676767"
+        android:textColorHint="#353535"
         app:layout_constraintTop_toBottomOf="@+id/option_c_edit"
         tools:layout_editor_absoluteX="101dp" />
 
@@ -138,7 +138,7 @@
         android:paddingRight="5dp"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="#DA676767"
+        android:textColorHint="#353535"
         app:layout_constraintTop_toBottomOf="@+id/option_d_edit"
         tools:layout_editor_absoluteX="101dp" />
 

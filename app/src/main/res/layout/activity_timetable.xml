@@ -15,8 +15,7 @@
         android:scaleY="4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow"
-        android:onClick="goto_home_page_navigation"/>
+        app:srcCompat="@drawable/arrow"/>
 
     <TextView
         android:id="@+id/rate_us_banner"
@@ -42,35 +41,13 @@
     <ImageView
         android:id="@+id/share_jpeg"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:scaleX="2"
         android:scaleY="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rate_us_banner"
         app:srcCompat="@drawable/clock" />
-
-    <ImageView
-        android:id="@+id/prev_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/share_jpeg"
-        app:srcCompat="@drawable/ic_email_rectangle"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ImageView
-        android:id="@+id/new_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prev_time"
-        app:srcCompat="@drawable/ic_email_rectangle"
-        tools:ignore="VectorDrawableCompat" />
 
     <ImageButton
         android:id="@+id/submit_butt"
@@ -82,50 +59,67 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_time"
         app:srcCompat="@drawable/login_rect" />
 
     <TextView
         android:id="@+id/submit"
         android:layout_width="100dp"
         android:layout_height="35dp"
+        android:layout_marginBottom="17dp"
         android:gravity="center"
         android:text="Confirm"
         android:textColor="#FFFFFF"
         android:textSize="27dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TimePicker
+        android:id="@+id/time_start"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share_jpeg" />
+
+    <TimePicker
+        android:id="@+id/time_end"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:timePickerMode="spinner"
+        app:layout_constraintBottom_toTopOf="@+id/submit_butt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_time" />
+        app:layout_constraintTop_toBottomOf="@+id/time_start" />
 
-    <EditText
-        android:id="@+id/enter_prev_time"
-        android:layout_width="260dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="Enter Previous Time :"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="#000000"
-        android:textColorHint="#DA676767"
-        app:layout_constraintBottom_toBottomOf="@+id/prev_time"
-        app:layout_constraintEnd_toEndOf="@+id/prev_time"
-        app:layout_constraintStart_toStartOf="@+id/prev_time"
-        app:layout_constraintTop_toTopOf="@+id/prev_time" />
+    <TextView
+        android:id="@+id/start_time_txt"
+        android:layout_width="165dp"
+        android:layout_height="69dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:text="Starting Time :"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/time_start"
+        app:layout_constraintEnd_toStartOf="@+id/time_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/time_start" />
 
-    <EditText
-        android:id="@+id/enter_next_time"
-        android:layout_width="260dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="Enter New Time :"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="#000000"
-        android:textColorHint="#DA676767"
-        app:layout_constraintBottom_toBottomOf="@+id/new_time"
-        app:layout_constraintEnd_toEndOf="@+id/new_time"
-        app:layout_constraintStart_toStartOf="@+id/new_time"
-        app:layout_constraintTop_toTopOf="@+id/new_time" />
+    <TextView
+        android:id="@+id/end_time_txt"
+        android:layout_width="165dp"
+        android:layout_height="69dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:scaleX="1"
+        android:scaleY="1"
+        android:text=": Ending Time"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/time_end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/time_end"
+        app:layout_constraintTop_toTopOf="@+id/time_end" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
