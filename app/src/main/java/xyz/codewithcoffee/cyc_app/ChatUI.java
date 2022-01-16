@@ -30,7 +30,6 @@ public class ChatUI extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userlist);
-        initDb();
         initRv();
         ImageButton allusers = (ImageButton) findViewById(R.id.allusersbg);
         allusers.setOnClickListener(new View.OnClickListener() {
@@ -55,17 +54,6 @@ public class ChatUI extends AppCompatActivity {
         adapter.startListening();
     }
 
-
-    private void initDb()
-    {
-        User user = new User(
-                FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
-                FirebaseAuth.getInstance().getCurrentUser().getUid()
-                );
-        fb_data.getReference().child("users").child(
-                FirebaseAuth.getInstance().getCurrentUser().getUid()
-        ).setValue(user);
-    }
 
     private void initChatUi(DatabaseReference db,String user)
     {

@@ -1,21 +1,21 @@
 package xyz.codewithcoffee.cyc_app;
 
+import static xyz.codewithcoffee.cyc_app.MainActivity.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -27,11 +27,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -39,18 +45,16 @@ public class Dashboard extends AppCompatActivity {
     ArrayList<CardElement> cards;
     MyAdapter adapter;
     Uri profile_img;
+    boolean currAdmin;
+    boolean userExists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        cards = new ArrayList<>();
+        userExists = false;
+        initDB();
         fillCards();
-        rv=(RecyclerView)findViewById(R.id.rec);
-        adapter = new MyAdapter(cards,this);
-        rv.setAdapter(adapter);
-        rv.setLayoutManager(new GridLayoutManager(this,2));
-        rv.setHasFixedSize(true);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,23 +68,48 @@ public class Dashboard extends AppCompatActivity {
         profile_img = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
         //ImageView pfp = findViewById(R.id.profile_img);
         //pfp.setImageURI(img);
+        Tym timi = Timetable.getCurrTime();
+        File rtFile = new File(this.getFilesDir(),"restrict_time.txt");
+        writeTextData(rtFile,timi.getHour()+" "
+                + timi.getMin()+" \n"
+                +timi.getHour()+" "
+                +timi.getMin()+" \n"
+        );
+    }
+
+    private void writeTextData(File file, String data) {
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(data.getBytes());
+            Log.d(TAG, "Wrote to " + file.getAbsolutePath().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     private void fillCards()
     {
         int[] colors = {
-                Color.parseColor("#CCE53935"),
-                Color.parseColor("#CC9C27B0"),
-                Color.parseColor("#CCFFEB3B"),
-                Color.parseColor("#CCFF5722"),
-                Color.parseColor("#CC4CAF50"),
-                Color.parseColor("#CC00BCD4"),
+                Color.parseColor("#E66030A8"),
+                Color.parseColor("#E6714CA8"),
 
         };
         int c=0;
+        cards = new ArrayList<>();
+        if(currAdmin) {
+            cards.add(new CardElement(getOCL(QuestionSet.class), R.drawable.bg_setquestion, R.drawable.ic_setquestion, "Set Question", colors[(c++ % colors.length)]));
+        }
         cards.add(new CardElement(getOCL(OnlineExam.class),R.drawable.bg_onlineexam,R.drawable.ic_onlineexam,"Online Exam",colors[(c++%colors.length)]));
-        cards.add(new CardElement(getOCL(QuestionSet.class),R.drawable.bg_setquestion,R.drawable.ic_setquestion,"Set Question",colors[(c++%colors.length)]));
-        cards.add(new CardElement(getOCL(WebsiteBlocking.class),R.drawable.bg_websiteblocking,R.drawable.ic_websiteblocking,"Website Blocking",colors[(c++%colors.length)]));
+        cards.add(new CardElement(getOCL(WebsiteBlocking.class),R.drawable.bg_websiteblocking,R.drawable.ic_websiteblocking,"Site Blocking",colors[(c++%colors.length)]));
         cards.add(new CardElement(getOCL(AppBlocking.class),R.drawable.bg_appblocking,R.drawable.ic_appblocking,"App Blocking",colors[(c++%colors.length)]));
         cards.add(new CardElement(getOCL(Timetable.class),R.drawable.bg_timetable,R.drawable.ic_timetable,"Timetable",colors[(c++%colors.length)]));
         cards.add(new CardElement(getOCL(RateUs.class),R.drawable.bg_rateus,R.drawable.ic_rateus,"Rate Us",colors[(c++%colors.length)]));
@@ -107,7 +136,69 @@ public class Dashboard extends AppCompatActivity {
                                 });
                     }
                 },
-                R.drawable.transparent, android.R.drawable.ic_lock_power_off, "Sign Out", Color.DKGRAY));
+                R.drawable.transparent, R.drawable.logout_small, "Sign Out", colors[(c++%colors.length)]));
+
+        rv=(RecyclerView)findViewById(R.id.rec);
+        adapter = new MyAdapter(cards,this);
+        rv.setAdapter(adapter);
+        rv.setLayoutManager(new GridLayoutManager(this,3));
+        rv.setHasFixedSize(true);
+    }
+
+    private void initUser(User user, DatabaseReference rootRef)
+    {
+        Log.d(TAG,"User Exist Called");
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Log.d(TAG,"User Exist Actual Called");
+                if (!(snapshot.hasChild(
+                        FirebaseAuth.getInstance().getCurrentUser().getUid()
+                ))) {
+                    rootRef.child(
+                            FirebaseAuth.getInstance().getCurrentUser().getUid()
+                    ).setValue(user);
+                    userExists = false;
+                }
+                else
+                {
+                    userExists = true;
+                }
+                Log.d(TAG,"User Exists : "+ userExists);
+                rootRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("admin").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Integer value = snapshot.getValue(Integer.class);
+                        currAdmin = (value>0);
+                        fillCards();
+                        Log.d(TAG,"Admin Access Updated "+currAdmin);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(Dashboard.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                TextView welc = findViewById(R.id.welc_txt);
+                if(userExists) welc.setText("Welcome Back !");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Dashboard.this, "Fail to retrieve user", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void initDB() {
+        User user = new User(
+                FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
+                FirebaseAuth.getInstance().getCurrentUser().getUid(),0
+        );
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference()
+                .child("users");
+        initUser(user, userRef);
     }
 
     private View.OnClickListener getOCL(Class aca)

@@ -9,12 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="textcolor_black">#FF000000</color>
 
-    <color name="colorPrimary">#4171E3</color>
-    <color name="test">#CC00BCD4</color>
-    <color name="colorPrimaryDark">#305EDF</color>
-    <color name="colorPrimaryLight">#4991E8</color>
-    <color name="colorAccent">#F2FFE0</color>
-    <color name="colorBGshape">#00109F</color>
+    <color name="test">#E66030A8</color>
+    <color name="colorPrimary">#6071d8</color>
+    <color name="colorSecondary">#8D66C7</color>
+    <color name="colorPrimaryDark">#4452AA</color>
+    <color name="colorSecondaryDark">#7541C5</color>
+    <color name="colorBGshape">#4859BC</color>
     <color name="colorText">#FFFFFF</color>
     <color name="colorBackground">#FFFFFF</color>
 </resources>

@@ -85,6 +85,7 @@ public class QuestionSet extends AppCompatActivity {
                         cr.setText("");
                         FirebaseDatabase.getInstance().getReference().child("exam").child("questions").
                                 child("q"+no).setValue(ques);
+                        no++;
                         if(no>len)
                         {
                             no = 0;
@@ -93,7 +94,7 @@ public class QuestionSet extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Thanks for submitting question set",Toast.LENGTH_LONG).show();;
                             return;
                         }
-                        qv.setHint("Question No "+(++no)+" Title :");
+                        qv.setHint("Question No "+no+" Title :");
                     }
                 });
             }

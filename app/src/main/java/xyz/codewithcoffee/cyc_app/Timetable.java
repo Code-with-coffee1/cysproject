@@ -95,7 +95,7 @@ public class Timetable extends AppCompatActivity {
         }
     }
 
-    private static Tym getCurrTime()
+    public static Tym getCurrTime()
     {
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
