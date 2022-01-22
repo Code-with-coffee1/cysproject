@@ -15,8 +15,7 @@
         android:scaleY="4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow"
-        android:onClick="goto_home_page_navigation"/>
+        app:srcCompat="@drawable/arrow" />
 
     <TextView
         android:id="@+id/rate_us_banner"
