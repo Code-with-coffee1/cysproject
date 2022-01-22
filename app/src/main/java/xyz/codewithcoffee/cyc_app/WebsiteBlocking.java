@@ -25,14 +25,14 @@ import java.util.Locale;
 
 public class WebsiteBlocking extends AppCompatActivity {
 
-    private MyCustomAdapter dataAdapter = null;
+    private WebBlockListAdapter dataAdapter = null;
     private ArrayList<Site> SiteList = null;
     private ListView listView = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(!checkAccessibilityPermission()){
+        if(!MainActivity.isAccessibilityServiceEnabled(this,UrlInterceptorService.class)){
             Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_instructions_page);
@@ -45,7 +45,7 @@ public class WebsiteBlocking extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            },10000);
+            },5000);
         }
         else
         {
@@ -91,7 +91,7 @@ public class WebsiteBlocking extends AppCompatActivity {
         Site yt = new Site("BLOCKED","https://youtube.com",false);
         SiteList.add(yt);*/
 
-        dataAdapter = new MyCustomAdapter(this,
+        dataAdapter = new WebBlockListAdapter(this,
                 R.layout.listitem, new ArrayList<Site>(SiteList));
         listView = (ListView) findViewById(R.id.blocked_apps);
         listView.setAdapter(dataAdapter);
@@ -109,7 +109,7 @@ public class WebsiteBlocking extends AppCompatActivity {
 
         Context cont = this;
 
-        Button blButt = (Button) findViewById(R.id.update_butt);
+        Button blButt = (Button) findViewById(R.id.block_app_butt);
         blButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -121,7 +121,7 @@ public class WebsiteBlocking extends AppCompatActivity {
                     et_site.setText("");
                     Site site = blockSite(sitename);
                     SiteList.add(site);
-                    dataAdapter = new MyCustomAdapter(cont,
+                    dataAdapter = new WebBlockListAdapter(cont,
                             R.layout.listitem, new ArrayList<Site>(SiteList));
                     listView = (ListView) findViewById(R.id.blocked_apps);
                     listView.setAdapter(dataAdapter);
@@ -143,7 +143,7 @@ public class WebsiteBlocking extends AppCompatActivity {
             }
         });
 
-        Button unbButt = (Button) findViewById(R.id.unblock_butt);
+        Button unbButt = (Button) findViewById(R.id.unblock_app_butt);
         unbButt.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -160,7 +160,7 @@ public class WebsiteBlocking extends AppCompatActivity {
                         flag = false;
                         unblockSite(site);
                         SiteList.remove(site);
-                        dataAdapter = new MyCustomAdapter(cont,
+                        dataAdapter = new WebBlockListAdapter(cont,
                                 R.layout.listitem, new ArrayList<Site>(SiteList));
                         listView = (ListView) findViewById(R.id.blocked_apps);
                         listView.setAdapter(dataAdapter);
@@ -178,19 +178,18 @@ public class WebsiteBlocking extends AppCompatActivity {
 
     }
 
-    private class MyCustomAdapter extends ArrayAdapter<Site> {
+    private class WebBlockListAdapter extends ArrayAdapter<Site> {
 
         private ArrayList<Site> SiteList;
 
-        public MyCustomAdapter(Context context, int textViewResourceId,
-                               ArrayList<Site> SiteList) {
+        public WebBlockListAdapter(Context context, int textViewResourceId,
+                                   ArrayList<Site> SiteList) {
             super(context, textViewResourceId, SiteList);
             this.SiteList = new ArrayList<Site>();
             this.SiteList.addAll(SiteList);
         }
 
         private class ViewHolder {
-            TextView code;
             CheckBox name;
         }
 
@@ -206,7 +205,7 @@ public class WebsiteBlocking extends AppCompatActivity {
                 convertView = vi.inflate(R.layout.listitem, null);
 
                 holder = new ViewHolder();
-                holder.code = (TextView) convertView.findViewById(R.id.code);
+//                holder.code = (TextView) convertView.findViewById(R.id.code);
                 holder.name = (CheckBox) convertView.findViewById(R.id.site_check);
                 convertView.setTag(holder);
 
@@ -227,7 +226,7 @@ public class WebsiteBlocking extends AppCompatActivity {
             }
 
             Site Site = SiteList.get(position);
-            holder.code.setText(" (" +  Site.getCode() + ")");
+//            holder.code.setText(" (" +  Site.getCode() + ")");
             holder.name.setText(Site.getName());
             holder.name.setChecked(Site.isSelected());
             holder.name.setTag(Site);

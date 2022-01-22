@@ -1,5 +1,7 @@
 package xyz.codewithcoffee.cyc_app;
 
+import static xyz.codewithcoffee.cyc_app.MainActivity.TAG;
+
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.ActivityNotFoundException;
@@ -14,27 +16,72 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class UrlInterceptorService extends AccessibilityService {
 
     private ArrayList<Site> SiteList;
+    private final HashMap<String, Long> previousUrlDetections = new HashMap<>();
 
-    private HashMap<String, Long> previousUrlDetections = new HashMap<>();
+    private Tym startTime;
+    private Tym endTime;
+
+    private void updateRestrictTime()
+    {
+        Tym[] val = getTymTuple(new File(this.getFilesDir(),"restrict_time.txt"));
+        startTime = val[0];
+        endTime = val[1];
+    }
+
+    private Tym[] getTymTuple(File myfile) {
+        Tym[] val = new Tym[]{new Tym(-1,-1,""),new Tym(-1,-1,"")};
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(myfile);
+            BufferedReader br = new BufferedReader(fileReader);
+            StringTokenizer stoken = new StringTokenizer(br.readLine());
+            val[0].setHour(Integer.parseInt(stoken.nextToken()));
+            val[0].setMin(Integer.parseInt(stoken.nextToken()));
+            stoken = new StringTokenizer(br.readLine());
+            val[1].setHour(Integer.parseInt(stoken.nextToken()));
+            val[1].setMin(Integer.parseInt(stoken.nextToken()));
+            return val;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         SiteList = (ArrayList<Site>) intent.getSerializableExtra("blocklist");
         Log.e("BLOCKER","-----BEGIN-----");
+        Log.e("APP_BLOCK","-----FOR SERVICE TEST-----");
         for(Site site : SiteList) {
             Log.e("BLOCKER",site.getName());
         }
+        updateRestrictTime();
         return START_STICKY;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onServiceConnected() {
         AccessibilityServiceInfo info = getServiceInfo();
@@ -106,11 +153,21 @@ public class UrlInterceptorService extends AccessibilityService {
     }
     //TODO Change this func
     private void analyzeCapturedUrl(@NonNull String capturedUrl, @NonNull String browserPackage) {
+        updateRestrictTime();
+        if(!Timetable.banTime(startTime,endTime))
+        {
+            Log.d(TAG,"WEB NOT VALID TIME");
+            return;
+        }
+        else
+        {
+            Log.d(TAG,"WEB VALID TIME");
+        }
         String redirectUrl = "https://google.com";
         boolean block = false;
         for(Site e : SiteList)
         {
-            if(capturedUrl.contains(e.getName()))
+            if(capturedUrl.toLowerCase().contains(e.getName().toLowerCase()))
             {
                 Log.e("BLOCKER","Blocked "+e.getName());
                 block = true;
@@ -119,7 +176,7 @@ public class UrlInterceptorService extends AccessibilityService {
         }
         if (block) {
             performRedirect(redirectUrl, browserPackage);
-            Intent intent=new Intent(this, BlockingOverlay.class);
+            Intent intent=new Intent(this, WebBlockingOverlay.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
