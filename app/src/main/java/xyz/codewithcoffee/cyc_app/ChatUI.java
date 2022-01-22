@@ -1,11 +1,14 @@
 package xyz.codewithcoffee.cyc_app;
 
+import static xyz.codewithcoffee.cyc_app.MainActivity.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +20,12 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class ChatUI extends AppCompatActivity {
 
@@ -64,14 +70,27 @@ public class ChatUI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText input = (EditText)findViewById(R.id.input);
-                db.push()
-                        .setValue(new ChatMessage(input.getText().toString(),
-                                FirebaseAuth.getInstance()
-                                        .getCurrentUser()
-                                        .getDisplayName())
-                        );
-                //Log.d(TAG,"Sent Text : "+input.getText().toString()+ " from : "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                pushDb(input.getText().toString());
                 input.setText("");
+            }
+
+            private void pushDb(String inp)
+            {
+                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference()
+                        .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("username");
+                rootRef.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String uname = snapshot.getValue(String.class);
+                        db.push().setValue(new ChatMessage(inp, uname));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.w(TAG, "loadPost:onCancelled", error.toException());
+                    }
+                });
             }
         });
         ((TextView)findViewById(R.id.recipient)).setText(user);

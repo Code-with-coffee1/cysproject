@@ -28,7 +28,7 @@ public class QuestionSet extends AppCompatActivity {
         Button justGo = (Button) findViewById(R.id.just_go);
         EditText noQues = (EditText) findViewById(R.id.no_ques);
         FirebaseDatabase.getInstance().getReference().child("exam").child("questions")
-                .setValue(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                .setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
         justGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

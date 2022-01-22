@@ -87,8 +87,8 @@ public class OnlineExam extends AppCompatActivity {
                     public void onClick(View view) {
                         Score score = new Score(
                                 FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                                FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
                                 correct,wrong,total);
+                        Score.initUsername(score);
                         fb_data.getReference().child("exam").child("scores").child(
                                 FirebaseAuth.getInstance().getCurrentUser().getUid()
                         ).setValue(score);

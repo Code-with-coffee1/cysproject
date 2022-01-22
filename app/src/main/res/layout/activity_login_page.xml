@@ -116,10 +116,10 @@
         android:layout_marginTop="13dp"
         android:text="Don't have an account ?"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
+        app:layout_constraintTop_toBottomOf="@+id/login_email" />
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/login_butt"
         android:layout_width="100dp"
         android:layout_height="42dp"
         android:layout_marginStart="10dp"
@@ -128,7 +128,7 @@
         android:textColor="#000000"
         app:backgroundTint="#438BF8"
         app:layout_constraintStart_toEndOf="@+id/already_acc"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
+        app:layout_constraintTop_toBottomOf="@+id/login_email" />
 
     <TextView
         android:id="@+id/connectwith"
@@ -138,34 +138,7 @@
         android:text="@string/connect_with"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup" />
-
-    <ImageButton
-        android:id="@+id/google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginTop="7dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connectwith"
-        app:srcCompat="@drawable/google" />
-
-    <ImageButton
-        android:id="@+id/facebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginRight="148dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/google"
-        app:layout_constraintTop_toBottomOf="@+id/connectwith"
-        app:srcCompat="@drawable/facebook" />
+        app:layout_constraintTop_toBottomOf="@+id/login_butt" />
 
     <Button
         android:id="@+id/forgot_password"
@@ -181,15 +154,28 @@
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="258dp"
-        android:layout_height="56dp"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
         android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_password">
+        app:layout_constraintTop_toBottomOf="@+id/connectwith">
 
     </com.google.android.gms.common.SignInButton>
+
+    <Button
+        android:id="@+id/login_email"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:text="Log In"
+        android:textColor="#000000"
+        app:backgroundTint="#438BF8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -62,17 +63,15 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(new Intent(Dashboard.this,ChatUI.class));
             }
         });
-        ((TextView)findViewById(R.id.username)).setText(FirebaseAuth.getInstance()
-                .getCurrentUser()
-                .getDisplayName());
+        linkUnameField(findViewById(R.id.username));
         profile_img = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
         //ImageView pfp = findViewById(R.id.profile_img);
         //pfp.setImageURI(img);
         Tym timi = Timetable.getCurrTime();
         File rtFile = new File(this.getFilesDir(),"restrict_time.txt");
-        writeTextData(rtFile,timi.getHour()+" "
+        writeTextData(rtFile,((timi.getHour()-11+24)%24)+" "
                 + timi.getMin()+" \n"
-                +timi.getHour()+" "
+                +((timi.getHour()+24+11)%24)+" "
                 +timi.getMin()+" \n"
         );
     }
@@ -187,6 +186,25 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(Dashboard.this, "Fail to retrieve user", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void linkUnameField(TextView tv)
+    {
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference()
+                .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("username");
+        rootRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String uname = snapshot.getValue(String.class);
+                tv.setText(uname);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "loadPost:onCancelled", error.toException());
             }
         });
     }

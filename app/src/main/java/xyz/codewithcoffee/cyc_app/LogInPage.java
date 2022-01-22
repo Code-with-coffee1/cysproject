@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,7 +42,7 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        firebaseAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         //this is where we start the Auth state Listener to listen for whether the user is signed in or not
         authStateListener = new FirebaseAuth.AuthStateListener(){
             @Override
@@ -75,6 +78,21 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
             public void onClick(View view) {
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(intent,RC_SIGN_IN);
+            }
+        });
+        ((Button)findViewById(R.id.login_email)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email,pass;
+                email = ((EditText)findViewById(R.id.editEmail)).getText().toString();
+                pass = ((EditText)findViewById(R.id.editPassword)).getText().toString();
+                try {
+                    emailSignIn(firebaseAuth, email, pass);
+                }
+                catch (IllegalArgumentException e)
+                {
+                    Toast.makeText(getApplicationContext(), "Please fill all fields correctly", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -130,6 +148,24 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
     }
 
 
+    private void emailSignIn(FirebaseAuth mAuth,String mail,String password)
+    {
+        mAuth.signInWithEmailAndPassword(mail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Log.d(MainActivity.TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                    gotoHome();
+                    Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Log.w(MainActivity.TAG, "signInWithEmail" + task.getException().getMessage());
+                    task.getException().printStackTrace();
+                    Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
 
     private void gotoHome(){
