@@ -1,7 +1,5 @@
 package xyz.codewithcoffee.cyc_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +8,8 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseUser;
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                     // you could place other firebase code
                     //logic to save the user details to Firebase
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intent=new Intent(MainActivity.this, Dashboard.class);
+                    Intent intent = new Intent(MainActivity.this, home_page_navigation.class);
                     startActivity(intent);
                 } else {
                     // User is signed out

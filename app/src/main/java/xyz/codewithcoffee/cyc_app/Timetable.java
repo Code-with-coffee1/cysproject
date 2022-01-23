@@ -2,9 +2,6 @@ package xyz.codewithcoffee.cyc_app;
 
 import static xyz.codewithcoffee.cyc_app.MainActivity.TAG;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -15,23 +12,15 @@ import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class Timetable extends AppCompatActivity {
@@ -51,14 +40,14 @@ public class Timetable extends AppCompatActivity {
         ((ImageButton)findViewById(R.id.submit_butt)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Tym start_tym = fetchRestrictStartTime(),end_tym =fetchRestrictEndTime();
-                writeTextData(rtFile,start_tym.getHour()+" "
-                        + start_tym.getMin()+" \n"
-                        +end_tym.getHour()+" "
-                        +end_tym.getMin()+" \n"
+                Tym start_tym = fetchRestrictStartTime(), end_tym = fetchRestrictEndTime();
+                writeTextData(rtFile, start_tym.getHour() + " "
+                        + start_tym.getMin() + " \n"
+                        + end_tym.getHour() + " "
+                        + end_tym.getMin() + " \n"
                 );
-                Toast.makeText(context,"Successfully set Restriction Time",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Timetable.this,Dashboard.class));
+                Toast.makeText(context, "Successfully set Restriction Time", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Timetable.this, home_page_navigation.class));
             }
         });
         Tym[] ttp = getTymTuple(rtFile);
@@ -148,7 +137,7 @@ public class Timetable extends AppCompatActivity {
         try {
             fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(data.getBytes());
-            Log.d(TAG, "Wrote to " + file.getAbsolutePath().toString());
+            Log.d(TAG, "Wrote to " + file.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

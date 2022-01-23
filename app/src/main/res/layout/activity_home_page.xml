@@ -4,107 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xyz.codewithcoffee.cyc_app.Homepage"
-    android:background="@drawable/home_back">
+    tools:context=".Home_page">
 
-    <ImageView
-        android:id="@+id/exam_double_line"
-        android:layout_width="411dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/double_line" />
-
-    <TextView
-        android:id="@+id/online_text_title"
+    <Button
+        android:id="@+id/app_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Home Page"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/exam_double_line"
+        android:onClick="goto_App_Blocker"
+        android:text="App Blocker"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintVertical_bias="0.358" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="300dp"
-        android:layout_height="550dp"
-        android:orientation="vertical"
+    <Button
+        android:id="@+id/website_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goto_Website_Blocker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:text="Website Blocker"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exam_double_line">
-
-        <Button
-            android:id="@+id/about_us"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="About Us" />
-
-        <Button
-            android:id="@+id/contact_us"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Contact Us" />
-
-        <Button
-            android:id="@+id/app_blocking"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="App Blocking" />
-
-        <Button
-            android:id="@+id/website_blocking"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Website Blocking" />
-
-        <Button
-            android:id="@+id/chat_app"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Chat App" />
-
-        <Button
-            android:id="@+id/onlineexam"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Online Exam" />
-
-        <Button
-            android:id="@+id/questionset"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Set Question" />
-
-        <Button
-            android:id="@+id/rate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rate Us" />
-
-        <Button
-            android:id="@+id/share_app"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Share App" />
-
-        <Button
-            android:id="@+id/timetable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Timetable" />
-
-        <Button
-            android:id="@+id/signout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign Out" />
-
-    </LinearLayout>
-
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintTop_toBottomOf="@+id/app_btn"
+        app:layout_constraintVertical_bias="0.168" />
 </androidx.constraintlayout.widget.ConstraintLayout>

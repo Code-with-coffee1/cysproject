@@ -28,7 +28,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sign_up">
-        <activity android:name=".Homepage" />
         <activity android:name=".Dashboard" />
         <activity android:name=".WebsiteBlocking" />
         <activity android:name=".AppBlocking" />
@@ -44,7 +43,8 @@
         <activity android:name=".AppBlockingOverlay" />
         <activity android:name=".ShareApp" />
         <activity android:name=".RateUs" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,6 +52,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".home_page_navigation"
+            android:exported="false"
+            android:label="@string/title_activity_home_page_navigation"
+            android:theme="@style/Theme.Sign_up.NoActionBar" />
+        <activity
+            android:name=".Home_page"
+            android:exported="false" />
 
         <service
             android:name=".UrlInterceptorService"

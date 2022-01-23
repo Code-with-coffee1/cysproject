@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -169,7 +168,7 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
 
 
     private void gotoHome(){
-        Intent intent = new Intent(LogInPage.this, Dashboard.class);
+        Intent intent = new Intent(LogInPage.this, home_page_navigation.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

@@ -1,20 +1,18 @@
 package xyz.codewithcoffee.cyc_app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.InvalidObjectException;
-import java.nio.InvalidMarkException;
 
 public class QuestionSet extends AppCompatActivity {
 
@@ -33,25 +31,23 @@ public class QuestionSet extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 len = Integer.parseInt(noQues.getText().toString());
-                if(len==0)
-                {
-                    startActivity(new Intent(QuestionSet.this,Dashboard.class));
-                    Toast.makeText(getApplicationContext(),"No questions were submitted",Toast.LENGTH_LONG).show();;
+                if (len == 0) {
+                    startActivity(new Intent(QuestionSet.this, home_page_navigation.class));
+                    Toast.makeText(getApplicationContext(), "No questions were submitted", Toast.LENGTH_LONG).show();
                     return;
                 }
                 no = 0;
                 setContentView(R.layout.activity_question_set);
-                ((EditText) findViewById(R.id.question_name)).setHint("Question No "+(++no)+" Title :");
+                ((EditText) findViewById(R.id.question_name)).setHint("Question No " + (++no) + " Title :");
                 Button submit = (Button) findViewById(R.id.submit);
                 submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(no>len)
-                        {
+                        if (no > len) {
                             no = 0;
                             len = -1;
-                            startActivity(new Intent(QuestionSet.this,Dashboard.class));
-                            Toast.makeText(getApplicationContext(),"Thanks for submitting question set",Toast.LENGTH_LONG).show();;
+                            startActivity(new Intent(QuestionSet.this, home_page_navigation.class));
+                            Toast.makeText(getApplicationContext(), "Thanks for submitting question set", Toast.LENGTH_LONG).show();
                             return;
                         }
                         String question,option_a,option_b,option_c,option_d;
@@ -86,12 +82,11 @@ public class QuestionSet extends AppCompatActivity {
                         FirebaseDatabase.getInstance().getReference().child("exam").child("questions").
                                 child("q"+no).setValue(ques);
                         no++;
-                        if(no>len)
-                        {
+                        if (no > len) {
                             no = 0;
                             len = -1;
-                            startActivity(new Intent(QuestionSet.this,Dashboard.class));
-                            Toast.makeText(getApplicationContext(),"Thanks for submitting question set",Toast.LENGTH_LONG).show();;
+                            startActivity(new Intent(QuestionSet.this, home_page_navigation.class));
+                            Toast.makeText(getApplicationContext(), "Thanks for submitting question set", Toast.LENGTH_LONG).show();
                             return;
                         }
                         qv.setHint("Question No "+no+" Title :");
