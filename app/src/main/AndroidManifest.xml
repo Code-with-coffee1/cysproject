@@ -42,6 +42,7 @@
         <activity android:name=".WebBlockingOverlay" />
         <activity android:name=".AppBlockingOverlay" />
         <activity android:name=".ShareApp" />
+        <activity android:name=".Syllabus" />
         <activity android:name=".RateUs" />
         <activity
             android:name=".MainActivity"

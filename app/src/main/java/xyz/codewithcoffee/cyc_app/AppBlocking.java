@@ -1,9 +1,5 @@
 package xyz.codewithcoffee.cyc_app;
 
-import static xyz.codewithcoffee.cyc_app.MainActivity.TMP_TAG;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +8,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -26,11 +21,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AppBlocking extends AppCompatActivity {
@@ -131,10 +126,10 @@ public class AppBlocking extends AppCompatActivity {
             PackageInfo p = packs.get(i);
             ApplicationInfo a = p.applicationInfo;
             // skip system apps if they shall not be included
-            if ((a.flags & ApplicationInfo.FLAG_SYSTEM) == 1) {
+            /*if ((a.flags & ApplicationInfo.FLAG_SYSTEM) == 1) {
                 Log.d(TAG,"SYS: "+p.packageName);
                 continue;
-            }
+            }*/
             Log.d(TAG,p.packageName);
             finlist.add(p);
         }
@@ -187,25 +182,21 @@ public class AppBlocking extends AppCompatActivity {
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
         }
-        if (accessEnabled == 0) {
-            // if not construct intent to request permission
-            /*Intent intent=new Intent(WebsiteBlocking.this,InstructionsPage.class);
+        // if not construct intent to request permission
+        /*Intent intent=new Intent(WebsiteBlocking.this,InstructionsPage.class);
             startActivity(intent);*/
-            return false;
-        } else {
-            /*Settings.Secure.putString(getContentResolver(),
+        /*Settings.Secure.putString(getContentResolver(),
                     Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES, "xyz.codewithcoffee.cyc_app/UrlInterceptorService");
             Settings.Secure.putString(getContentResolver(),
                     Settings.Secure.ACCESSIBILITY_ENABLED, "1");*/
-            return true;
-        }
+        return accessEnabled != 0;
     }
 
 
     private class AppBlockListAdapter extends ArrayAdapter<App> {
 
-        private ArrayList<App> apparray;
-        private ArrayList<String> blist;
+        private final ArrayList<App> apparray;
+        private final ArrayList<String> blist;
 
         public AppBlockListAdapter(Context context, int textViewResourceId,
                                    ArrayList<App> aalist) {

@@ -25,6 +25,10 @@
             android:icon="@drawable/ic_onlineexam"
             android:title="Online Exam" />
         <item
+            android:id="@+id/syllabus"
+            android:icon="@android:drawable/ic_menu_sort_alphabetically"
+            android:title="Syllabus" />
+        <item
             android:id="@+id/rate"
             android:icon="@drawable/rate_us_ic"
             android:title="Rate Us" />

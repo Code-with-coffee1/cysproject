@@ -112,6 +112,10 @@ public class home_page_navigation extends AppCompatActivity {
                         intent = new Intent(home_page_navigation.this, OnlineExam.class);
                         startActivity(intent);
                         return true;
+                    case R.id.syllabus:
+                        intent = new Intent(home_page_navigation.this, Syllabus.class);
+                        startActivity(intent);
+                        return true;
                     case R.id.nav_home:
                         intent = new Intent(home_page_navigation.this, home_page_navigation.class);
                         startActivity(intent);
