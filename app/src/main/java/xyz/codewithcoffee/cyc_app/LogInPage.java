@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-    
+
     private SignInButton signInButton;
     private GoogleApiClient googleApiClient;
     private static final int RC_SIGN_IN = 1;
@@ -82,16 +82,41 @@ public class LogInPage extends AppCompatActivity implements GoogleApiClient.OnCo
         ((Button)findViewById(R.id.login_email)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email,pass;
-                email = ((EditText)findViewById(R.id.editEmail)).getText().toString();
-                pass = ((EditText)findViewById(R.id.editPassword)).getText().toString();
+                String email, pass;
+                email = ((EditText) findViewById(R.id.editEmail)).getText().toString();
+                pass = ((EditText) findViewById(R.id.editPassword)).getText().toString();
                 try {
                     emailSignIn(firebaseAuth, email, pass);
-                }
-                catch (IllegalArgumentException e)
-                {
+                } catch (IllegalArgumentException e) {
                     Toast.makeText(getApplicationContext(), "Please fill all fields correctly", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        ((Button) findViewById(R.id.forgot_password)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email;
+                email = ((EditText) findViewById(R.id.editEmail)).getText().toString();
+                if (email.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),
+                            "Email field is empty"
+                            , Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(),
+                                            "Email sent to " + email, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(),
+                                            task.getException().getMessage()
+                                            , Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
     }

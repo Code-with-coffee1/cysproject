@@ -25,10 +25,6 @@
             android:icon="@drawable/ic_onlineexam"
             android:title="Online Exam" />
         <item
-            android:id="@+id/set_ques"
-            android:icon="@drawable/ic_setquestion"
-            android:title="Set Questions" />
-        <item
             android:id="@+id/rate"
             android:icon="@drawable/rate_us_ic"
             android:title="Rate Us" />
