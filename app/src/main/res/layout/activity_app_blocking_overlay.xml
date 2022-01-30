@@ -7,37 +7,12 @@
     tools:context="xyz.codewithcoffee.cyc_app.WebBlockingOverlay"
     android:background="@drawable/home_back">
 
-
     <ImageView
-        android:id="@+id/main_block"
-        android:layout_width="248dp"
-        android:layout_height="251dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/blocked" />
-
-    <TextView
-        android:id="@+id/this_app_blocked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="75dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="This App has been Blocked"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/main_block"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/user_blocked"
-        android:layout_width="174dp"
-        android:layout_height="165dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_block"
-        app:srcCompat="@drawable/user_blocked" />
-
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/overlay" />
 </androidx.constraintlayout.widget.ConstraintLayout>
